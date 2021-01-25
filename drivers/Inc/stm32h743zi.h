@@ -123,5 +123,20 @@ typedef struct
      __v uint32_t AFRH;                 /*GPIO alternate function high register,                Address offset: 0x24*/
 }GPIO_RegDef_t;
 
+/**********************************************
+ * Peripheral definitions (Peripheral base address typecasted to xxx_RegDef_t)
+ ***********************************************/
+
+#define GPIOA                   ((GPIO_RegDef_t*) GPIOA_BASEADDR)
+#define GPIOB                   ((GPIO_RegDef_t*) GPIOB_BASEADDR)
+#define GPIOC                   ((GPIO_RegDef_t*) GPIOC_BASEADDR)
+#define GPIOD                   ((GPIO_RegDef_t*) GPIOD_BASEADDR)
+#define GPIOE                   ((GPIO_RegDef_t*) GPIOE_BASEADDR)
+#define GPIOF                   ((GPIO_RegDef_t*) GPIOF_BASEADDR)
+#define GPIOG                   ((GPIO_RegDef_t*) GPIOG_BASEADDR)
+#define GPIOH                   ((GPIO_RegDef_t*) GPIOH_BASEADDR)
+#define GPIOI                   ((GPIO_RegDef_t*) GPIOI_BASEADDR)
+#define GPIOJ                   ((GPIO_RegDef_t*) GPIOJ_BASEADDR)
+#define GPIOK                   ((GPIO_RegDef_t*) GPIOK_BASEADDR)
 
 #endif /* INC_STM32H743ZI_H_ */
