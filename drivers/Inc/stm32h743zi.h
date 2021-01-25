@@ -236,4 +236,20 @@ typedef struct
 
 #define RCC                     ((RCC_RegDef_t*) RCC_BASEADDR)
 
+/**********************************************
+ * Clock Enable Macros for GPIOx peripherals
+ ***********************************************/
+
+#define GPIOA_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 0) )        /* 1: GPIOA peripheral clock enabled */
+#define GPIOB_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 1) )        /* 1: GPIOB peripheral clock enabled */
+#define GPIOC_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 2) )        /* 1: GPIOC peripheral clock enabled */
+#define GPIOD_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 3) )        /* 1: GPIOD peripheral clock enabled */
+#define GPIOE_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 4) )        /* 1: GPIOE peripheral clock enabled */
+#define GPIOF_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 5) )        /* 1: GPIOF peripheral clock enabled */
+#define GPIOG_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 6) )        /* 1: GPIOG peripheral clock enabled */
+#define GPIOH_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 7) )        /* 1: GPIOH peripheral clock enabled */
+#define GPIOI_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 8) )        /* 1: GPIOI peripheral clock enabled */
+#define GPIOJ_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 9) )        /* 1: GPIOJ peripheral clock enabled */
+#define GPIOK_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 10) )       /* 1: GPIOK peripheral clock enabled */
+
 #endif /* INC_STM32H743ZI_H_ */
