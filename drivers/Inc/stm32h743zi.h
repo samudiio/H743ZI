@@ -49,4 +49,58 @@
 #define APB4PERIPH_BASE         0x58000000U
 #define AHB4PERIPH_BASE         0x58020000U
 
+/**********************************************
+ * Base addresses of peripherals which are hanging on AHB4 bus
+ * TODO : Complete for all other peripherals
+ ***********************************************/
+
+#define GPIOA_BASEADDR          (AHB4PERIPH_BASE + 0x0000)
+#define GPIOB_BASEADDR          (AHB4PERIPH_BASE + 0x0400)
+#define GPIOC_BASEADDR          (AHB4PERIPH_BASE + 0x0800)
+#define GPIOD_BASEADDR          (AHB4PERIPH_BASE + 0x0C00)
+#define GPIOE_BASEADDR          (AHB4PERIPH_BASE + 0x1000)
+#define GPIOF_BASEADDR          (AHB4PERIPH_BASE + 0x1400)
+#define GPIOG_BASEADDR          (AHB4PERIPH_BASE + 0x1800)
+#define GPIOH_BASEADDR          (AHB4PERIPH_BASE + 0x1C00)
+#define GPIOI_BASEADDR          (AHB4PERIPH_BASE + 0x2000)
+#define GPIOJ_BASEADDR          (AHB4PERIPH_BASE + 0x2400)
+#define GPIOK_BASEADDR          (AHB4PERIPH_BASE + 0x2800)
+
+#define RCC_BASEADDR            (AHB4PERIPH_BASE + 0x4400)
+
+/**********************************************
+ * Base addresses of peripherals which are hanging on APB1 bus
+ * TODO : Complete for all other peripherals
+ ***********************************************/
+
+#define I2C1_BASEADDR           (APB1PERIPH_BASE + 0x5400)
+#define I2C2_BASEADDR           (APB1PERIPH_BASE + 0x5800)
+#define I2C3_BASEADDR           (APB1PERIPH_BASE + 0x5C00)
+
+#define SPI2_BASEADDR           (APB1PERIPH_BASE + 0x3800)
+#define SPI3_BASEADDR           (APB1PERIPH_BASE + 0x3C00)
+
+#define USART2_BASEADDR         (APB1PERIPH_BASE + 0x4400)
+#define USART3_BASEADDR         (APB1PERIPH_BASE + 0x4800)
+#define UART4_BASEADDR          (APB1PERIPH_BASE + 0x4C00)
+#define UART5_BASEADDR          (APB1PERIPH_BASE + 0x5000)
+
+/**********************************************
+ * Base addresses of peripherals which are hanging on APB2 bus
+ * TODO : Complete for all other peripherals
+ ***********************************************/
+
+#define SPI1_BASEADDR           (APB2PERIPH_BASE + 0x3000)
+#define USART1_BASEADDR         (APB2PERIPH_BASE + 0x1000)
+#define USART6_BASEADDR         (APB2PERIPH_BASE + 0x1400)
+
+/**********************************************
+ * Base addresses of peripherals which are hanging on APB4 bus
+ * TODO : Complete for all other peripherals
+ ***********************************************/
+
+#define EXTI_BASEADDR           (APB4PERIPH_BASE + 0x0000)
+#define SYSCFG_BASEADDR         (APB4PERIPH_BASE + 0x0400)
+
+
 #endif /* INC_STM32H743ZI_H_ */
