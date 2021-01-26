@@ -114,16 +114,16 @@
  */
 typedef struct
 {
-     __v uint32_t MODER;                /*GPIO port mode register,                              Address offset: 0x00*/
-     __v uint32_t OTYPER;               /*GPIO port output type register,                       Address offset: 0x04*/
-     __v uint32_t OSPEEDR;              /*GPIO port output speed register,                      Address offset: 0x08*/
-     __v uint32_t PUPDR;                /*GPIO port pull-up/pull-down register,                 Address offset: 0x0C*/
-     __v uint32_t IDR;                  /*GPIO port input data register,                        Address offset: 0x10*/
-     __v uint32_t ODR;                  /*GPIO port output data register,                       Address offset: 0x14*/
-     __v uint32_t BSRR;                 /*GPIO port bit set/reset register,                     Address offset: 0x18*/
-     __v uint32_t LCKR;                 /*GPIO port configuration lock register,                Address offset: 0x1C*/
-     __v uint32_t AFRL;                 /*GPIO alternate function low register,                 Address offset: 0x20*/
-     __v uint32_t AFRH;                 /*GPIO alternate function high register,                Address offset: 0x24*/
+     __v uint32_t MODER;                /* GPIO port mode register,                                 Address offset: 0x00 */
+     __v uint32_t OTYPER;               /* GPIO port output type register,                          Address offset: 0x04 */
+     __v uint32_t OSPEEDR;              /* GPIO port output speed register,                         Address offset: 0x08 */
+     __v uint32_t PUPDR;                /* GPIO port pull-up/pull-down register,                    Address offset: 0x0C */
+     __v uint32_t IDR;                  /* GPIO port input data register,                           Address offset: 0x10 */
+     __v uint32_t ODR;                  /* GPIO port output data register,                          Address offset: 0x14 */
+     __v uint32_t BSRR;                 /* GPIO port bit set/reset register,                        Address offset: 0x18 */
+     __v uint32_t LCKR;                 /* GPIO port configuration lock register,                   Address offset: 0x1C */
+     __v uint32_t AFRL;                 /* GPIO alternate function low register,                    Address offset: 0x20 */
+     __v uint32_t AFRH;                 /* GPIO alternate function high register,                   Address offset: 0x24 */
 }GPIO_RegDef_t;
 
 /*
@@ -218,6 +218,46 @@ typedef struct
     uint32_t RESERVED12[32];            /* Reserved, 0x180-0x1FC                                    Address offset: 0x180 */
 }RCC_RegDef_t;
 
+/*
+ * Peripheral register definition structure for SYSCFG.
+ */
+typedef struct
+{
+     uint32_t RESERVED0;                /* Reserved                                                  Address offset: 0x00 */
+     __v uint32_t PMCR;                 /* SYSCFG peripheral mode configuration register             Address offset: 0x04 */
+     __v uint32_t EXTICR1;              /* SYSCFG external interrupt configuration register 1        Address offset: 0x08 */
+     __v uint32_t EXTICR2;              /* SYSCFG external interrupt configuration register 2        Address offset: 0x0C */
+     __v uint32_t EXTICR3;              /* SYSCFG external interrupt configuration register 3        Address offset: 0x10 */
+     __v uint32_t EXTICR4;              /* SYSCFG external interrupt configuration register 4        Address offset: 0x14 */
+     __v uint32_t CFGR;                 /* SYSCFG configuration register                             Address offset: 0x18 */
+     uint32_t RESERVED1;                /* Reserved                                                  Address offset: 0x1C */
+     __v uint32_t CCSR;                 /* SYSCFG compensation cell control/status register          Address offset: 0x20 */
+     __v uint32_t CCVR;                 /* SYSCFG compensation cell value register                   Address offset: 0x24 */
+     __v uint32_t CCCR;                 /* SYSCFG compensation cell code register                    Address offset: 0x28 */
+     __v uint32_t PWRCR;                /* SYSCFG power control register                             Address offset: 0x2C */
+     uint32_t RESERVED2[61];            /* Reserved, 0x30-0x120                                      Address offset: 0x30 */
+     __v uint32_t PKGR;                 /* SYSCFG SYSCFG package register                            Address offset: 0x124 */
+     uint32_t RESERVED3[118];           /* Reserved, 0x128-0x2FC                                     Address offset: 0x128 */
+     __v uint32_t UR0;                  /* SYSCFG user register 0                                    Address offset: 0x300 */
+     uint32_t RESERVED4;                /* Reserved                                                  Address offset: 0x304 */
+     __v uint32_t UR2;                  /* SYSCFG user register 2                                    Address offset: 0x308 */
+     __v uint32_t UR3;                  /* SYSCFG user register 3                                    Address offset: 0x30C */
+     __v uint32_t UR4;                  /* SYSCFG user register 4                                    Address offset: 0x310 */
+     __v uint32_t UR5;                  /* SYSCFG user register 5                                    Address offset: 0x314 */
+     __v uint32_t UR6;                  /* SYSCFG user register 6                                    Address offset: 0x318 */
+     __v uint32_t UR7;                  /* SYSCFG user register 7                                    Address offset: 0x31C */
+     __v uint32_t UR8;                  /* SYSCFG user register 8                                    Address offset: 0x320 */
+     __v uint32_t UR9;                  /* SYSCFG user register 9                                    Address offset: 0x324 */
+     __v uint32_t UR10;                 /* SYSCFG user register 10                                   Address offset: 0x328 */
+     __v uint32_t UR11;                 /* SYSCFG user register 11                                   Address offset: 0x32C */
+     __v uint32_t UR12;                 /* SYSCFG user register 12                                   Address offset: 0x330 */
+     __v uint32_t UR13;                 /* SYSCFG user register 13                                   Address offset: 0x334 */
+     __v uint32_t UR14;                 /* SYSCFG user register 14                                   Address offset: 0x338 */
+     __v uint32_t UR15;                 /* SYSCFG user register 15                                   Address offset: 0x33C */
+     __v uint32_t UR16;                 /* SYSCFG user register 16                                   Address offset: 0x340 */
+     __v uint32_t UR17;                 /* SYSCFG user register 17                                   Address offset: 0x344 */
+}SYSCFG_RegDef_t;
+
 /**********************************************
  * Peripheral definitions (Peripheral base address typecasted to xxx_RegDef_t)
  ***********************************************/
@@ -235,6 +275,8 @@ typedef struct
 #define GPIOK                   ((GPIO_RegDef_t*) GPIOK_BASEADDR)
 
 #define RCC                     ((RCC_RegDef_t*) RCC_BASEADDR)
+
+#define SYSCFG                  ((SYSCFG_RegDef_t*) SYSCFG_BASEADDR)        /*SYSCFG Base address typecasted*/
 
 /**********************************************
  * Clock Enable Macros for GPIOx peripherals
@@ -275,5 +317,11 @@ typedef struct
 #define USART3_PCLK_EN()        ( RCC->APB1LENR |= (1 << 18) )      /* 1: USART3 peripheral clocks enabled */
 #define UART4_PCLK_EN()         ( RCC->APB1LENR |= (1 << 19) )      /* 1: UART4 peripheral clocks enabled */
 #define UART5_PCLK_EN()         ( RCC->APB1LENR |= (1 << 20) )      /* 1: UART5 peripheral clocks enabled */
+
+/**********************************************
+ * Clock Enable Macros for SYSCFG peripheral
+ ***********************************************/
+
+#define SYSCFG_PCLK_EN()        ( RCC->APB4ENR |= (1 << 1) )         /* 1: SYSCFG peripheral clock enabled */
 
 #endif /* INC_STM32H743ZI_H_ */
