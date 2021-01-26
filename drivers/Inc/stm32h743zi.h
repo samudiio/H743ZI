@@ -14,6 +14,17 @@
 #define __v volatile
 
 /**********************************************
+ * Generic Macros
+ ***********************************************/
+
+#define ENABLE                  1
+#define DISABLE                 0
+#define SET                     ENABLE
+#define RESET                   DISABLE
+#define GPIO_PIN_SET            SET
+#define GPIO_PIN_RESET          RESET
+
+/**********************************************
  * Base addresses of Flash and SRAM memories
  ***********************************************/
 #define FLASH_BASEADDR          0x08000000U
