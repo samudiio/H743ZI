@@ -352,23 +352,23 @@ typedef struct
  * Clock Disable Macros for SPIx peripherals
  ***********************************************/
 
-#define SPI2_PCLK_EN()          ( RCC->APB1LENR &= ~(1 << 14) )             /* 0: SPI2 peripheral clocks disabled */
-#define SPI3_PCLK_EN()          ( RCC->APB1LENR &= ~(1 << 15) )             /* 0: SPI3 peripheral clocks disabled */
+#define SPI2_PCLK_DI()          ( RCC->APB1LENR &= ~(1 << 14) )             /* 0: SPI2 peripheral clocks disabled */
+#define SPI3_PCLK_DI()          ( RCC->APB1LENR &= ~(1 << 15) )             /* 0: SPI3 peripheral clocks disabled */
 
 /**********************************************
  * Clock Disable Macros for USARTx peripherals
  ***********************************************/
 
-#define USART2_PCLK_EN()        ( RCC->APB1LENR &= ~(1 << 17) )             /* 0: USART2 peripheral clocks disabled */
-#define USART3_PCLK_EN()        ( RCC->APB1LENR &= ~(1 << 18) )             /* 0: USART3 peripheral clocks disabled */
-#define UART4_PCLK_EN()         ( RCC->APB1LENR &= ~(1 << 19) )             /* 0: UART4 peripheral clocks disabled */
-#define UART5_PCLK_EN()         ( RCC->APB1LENR &= ~(1 << 20) )             /* 0: UART5 peripheral clocks disabled */
+#define USART2_PCLK_DI()        ( RCC->APB1LENR &= ~(1 << 17) )             /* 0: USART2 peripheral clocks disabled */
+#define USART3_PCLK_DI()        ( RCC->APB1LENR &= ~(1 << 18) )             /* 0: USART3 peripheral clocks disabled */
+#define UART4_PCLK_DI()         ( RCC->APB1LENR &= ~(1 << 19) )             /* 0: UART4 peripheral clocks disabled */
+#define UART5_PCLK_DI()         ( RCC->APB1LENR &= ~(1 << 20) )             /* 0: UART5 peripheral clocks disabled */
 
 /**********************************************
  * Clock Disable Macros for SYSCFG peripheral
  ***********************************************/
 
-#define SYSCFG_PCLK_EN()        ( RCC->APB4ENR &= ~(1 << 1) )               /* 0: SYSCFG peripheral clock disabled */
+#define SYSCFG_PCLK_DI()        ( RCC->APB4ENR &= ~(1 << 1) )               /* 0: SYSCFG peripheral clock disabled */
 
 
 
