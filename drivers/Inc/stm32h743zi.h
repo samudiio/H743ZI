@@ -252,4 +252,28 @@ typedef struct
 #define GPIOJ_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 9) )        /* 1: GPIOJ peripheral clock enabled */
 #define GPIOK_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 10) )       /* 1: GPIOK peripheral clock enabled */
 
+/**********************************************
+ * Clock Enable Macros for I2Cx peripherals
+ ***********************************************/
+
+#define I2C1_PCLK_EN()          ( RCC->APB1LENR |= (1 << 21) )      /* 1: I2C1 peripheral clocks enabled */
+#define I2C2_PCLK_EN()          ( RCC->APB1LENR |= (1 << 22) )      /* 1: I2C2 peripheral clocks enabled */
+#define I2C3_PCLK_EN()          ( RCC->APB1LENR |= (1 << 23) )      /* 1: I2C2 peripheral clocks enabled */
+
+/**********************************************
+ * Clock Enable Macros for SPIx peripherals
+ ***********************************************/
+
+#define SPI2_PCLK_EN()          ( RCC->APB1LENR |= (1 << 14) )      /* 1: SPI2 peripheral clocks enabled */
+#define SPI3_PCLK_EN()          ( RCC->APB1LENR |= (1 << 15) )      /* 1: SPI2 peripheral clocks enabled */
+
+/**********************************************
+ * Clock Enable Macros for USARTx peripherals
+ ***********************************************/
+
+#define USART2_PCLK_EN()        ( RCC->APB1LENR |= (1 << 17) )      /* 1: USART2 peripheral clocks enabled */
+#define USART3_PCLK_EN()        ( RCC->APB1LENR |= (1 << 18) )      /* 1: USART3 peripheral clocks enabled */
+#define UART4_PCLK_EN()         ( RCC->APB1LENR |= (1 << 19) )      /* 1: UART4 peripheral clocks enabled */
+#define UART5_PCLK_EN()         ( RCC->APB1LENR |= (1 << 20) )      /* 1: UART5 peripheral clocks enabled */
+
 #endif /* INC_STM32H743ZI_H_ */
