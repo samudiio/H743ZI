@@ -10,28 +10,27 @@
 
 #include "stm32h743zi.h"
 
-
 /*
- * This is a Configuration structure for a GPIO pin
+ * GPIO pin numbers
  */
-typedef struct
-{
-    uint8_t GPIO_PinNumber;
-    GPIO_Pin_Modes_t GPIO_PinMode;
-    GPIO_Pin_Speed_t GPIO_PinSpeed;
-    GPIO_Pin_PuPd_t GPIO_PinPuPdControl;
-    GPIO_OutputType_t GPIO_PinOPType;
-    uint8_t GPIO_AltFuncMode;
-}GPIO_PinConfig_t;
-
-/*
- * This is a Handle structure for a GPIOpin
- */
-typedef struct
-{
-    GPIO_RegDef_t *pGPIOx;              /* This holds the base address of the GPIO port to which the pin belongs */
-    GPIO_PinConfig_t GPIO_PinConfig;    /* This holds GPIO pin configuration settings */
-}GPIO_Handle_t;
+typedef enum{
+    GPIO_PIN_NO_0 = 0,
+    GPIO_PIN_NO_1 = 0,
+    GPIO_PIN_NO_2 = 0,
+    GPIO_PIN_NO_3 = 0,
+    GPIO_PIN_NO_4 = 0,
+    GPIO_PIN_NO_5 = 0,
+    GPIO_PIN_NO_6 = 0,
+    GPIO_PIN_NO_7 = 0,
+    GPIO_PIN_NO_8 = 0,
+    GPIO_PIN_NO_9 = 0,
+    GPIO_PIN_NO_10 = 0,
+    GPIO_PIN_NO_11 = 0,
+    GPIO_PIN_NO_12 = 0,
+    GPIO_PIN_NO_13 = 0,
+    GPIO_PIN_NO_14 = 0,
+    GPIO_PIN_NO_15 = 0,
+}GPIO_Pin_Numbers_t;
 
 /*
  * GPIO pin possible modes.
@@ -72,6 +71,30 @@ typedef enum{
     GPIO_PIN_PU  = 1,           /* Pull-up */
     GPIO_PIN_PD  = 2            /* Pull-down */
 }GPIO_Pin_PuPd_t;
+
+/*
+ * This is a Configuration structure for a GPIO pin
+ */
+typedef struct
+{
+    uint8_t GPIO_PinNumber;
+    GPIO_Pin_Modes_t GPIO_PinMode;
+    GPIO_Pin_Speed_t GPIO_PinSpeed;
+    GPIO_Pin_PuPd_t GPIO_PinPuPdControl;
+    GPIO_OutputType_t GPIO_PinOPType;
+    GPIO_Pin_Numbers_t GPIO_AltFuncMode;
+}GPIO_PinConfig_t;
+
+/*
+ * This is a Handle structure for a GPIOpin
+ */
+typedef struct
+{
+    GPIO_RegDef_t *pGPIOx;              /* This holds the base address of the GPIO port to which the pin belongs */
+    GPIO_PinConfig_t GPIO_PinConfig;    /* This holds GPIO pin configuration settings */
+}GPIO_Handle_t;
+
+
 
 /*****************************************************************************************
  *                                  APIs supported by this driver
