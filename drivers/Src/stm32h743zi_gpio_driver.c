@@ -100,11 +100,21 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
  * @brief                 - Initialize the GPIO port and Pin.
  * @param[in] pGPIOHandle - Pointer to the handle structure.
  * @return                - none
- * @Note                  - none
+ * @Note                  - Configure mode, speed, output type, pull-up,
+ *                          pull-down resistor configuration, alternate
+ *                          functionality and various other things.
  */
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
+    /* 1 . configure the mode of gpio pin */
 
+    /* 2. configure the speed */
+
+    /* 3. configure the pupd settings */
+
+    /* 4. configure the optype */
+
+    /* 5. configure the alt functionality */
 }
 
 /*********************************************************************
