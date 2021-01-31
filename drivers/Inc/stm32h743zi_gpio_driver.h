@@ -77,12 +77,12 @@ typedef enum{
  */
 typedef struct
 {
-    uint8_t GPIO_PinNumber;
+    GPIO_Pin_Numbers_t GPIO_PinNumber;
     GPIO_Pin_Modes_t GPIO_PinMode;
     GPIO_Pin_Speed_t GPIO_PinSpeed;
     GPIO_Pin_PuPd_t GPIO_PinPuPdControl;
     GPIO_OutputType_t GPIO_PinOPType;
-    GPIO_Pin_Numbers_t GPIO_AltFuncMode;
+    uint8_t GPIO_AltFuncMode;
 }GPIO_PinConfig_t;
 
 /*
