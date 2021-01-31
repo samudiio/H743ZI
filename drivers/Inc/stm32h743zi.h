@@ -349,7 +349,7 @@ typedef struct
 #define GPIOH_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 7) )               /* 0: GPIOH peripheral clock disabled */
 #define GPIOI_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 8) )               /* 0: GPIOI peripheral clock disabled */
 #define GPIOJ_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 9) )               /* 0: GPIOJ peripheral clock disabled */
-#define GPIOk_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 10) )              /* 0: GPIOK peripheral clock disabled */
+#define GPIOK_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 10) )              /* 0: GPIOK peripheral clock disabled */
 
 /**********************************************
  * Clock Disable Macros for I2Cx peripherals
