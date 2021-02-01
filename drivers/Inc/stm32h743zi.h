@@ -176,7 +176,7 @@ typedef struct
     __v uint32_t AHB3RSTR;              /* RCC AHB3 Reset Register                                  Address offset: 0x7C */
     __v uint32_t AHB1RSTR;              /* RCC AHB1 Peripheral Reset Register                       Address offset: 0x80 */
     __v uint32_t AHB2RSTR;              /* RCC AHB2 Peripheral Reset Register                       Address offset: 0x84 */
-    __v uint32_t AHB4RSTR;              /* RCC AHB2 Peripheral Reset Register                       Address offset: 0x88 */
+    __v uint32_t AHB4RSTR;              /* RCC AHB4 Peripheral Reset Register                       Address offset: 0x88 */
     __v uint32_t APB3RSTR;              /* RCC APB3 Peripheral Reset Register                       Address offset: 0x8C */
     __v uint32_t APB1LRSTR;             /* RCC APB1 Peripheral Reset Register                       Address offset: 0x90 */
     __v uint32_t APB1HRSTR;             /* RCC APB1 Peripheral Reset Register                       Address offset: 0x94 */
@@ -381,6 +381,20 @@ typedef struct
 
 #define SYSCFG_PCLK_DI()        ( RCC->APB4ENR &= ~(1 << 1) )               /* 0: SYSCFG peripheral clock disabled */
 
+/**********************************************
+ * Macros to reset GPIOx peripherals
+ ***********************************************/
 
+#define GPIOA_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 0));  (RCC->AHB4RSTR &= ~(1 << 0)); }while(0)       /* GPIOA block reset */
+#define GPIOB_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 1));  (RCC->AHB4RSTR &= ~(1 << 1)); }while(0)       /* GPIOB block reset */
+#define GPIOC_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 2));  (RCC->AHB4RSTR &= ~(1 << 2)); }while(0)       /* GPIOC block reset */
+#define GPIOD_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 3));  (RCC->AHB4RSTR &= ~(1 << 3)); }while(0)       /* GPIOD block reset */
+#define GPIOE_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 4));  (RCC->AHB4RSTR &= ~(1 << 4)); }while(0)       /* GPIOE block reset */
+#define GPIOF_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 5));  (RCC->AHB4RSTR &= ~(1 << 5)); }while(0)       /* GPIOF block reset */
+#define GPIOG_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 6));  (RCC->AHB4RSTR &= ~(1 << 6)); }while(0)       /* GPIOG block reset */
+#define GPIOH_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 7));  (RCC->AHB4RSTR &= ~(1 << 7)); }while(0)       /* GPIOH block reset */
+#define GPIOI_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 8));  (RCC->AHB4RSTR &= ~(1 << 8)); }while(0)       /* GPIOI block reset */
+#define GPIOJ_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 9));  (RCC->AHB4RSTR &= ~(1 << 9)); }while(0)       /* GPIOJ block reset */
+#define GPIOK_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 10)); (RCC->AHB4RSTR &= ~(1 << 10)); }while(0)      /* GPIOK block reset */
 
 #endif /* INC_STM32H743ZI_H_ */
