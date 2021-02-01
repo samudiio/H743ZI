@@ -14,22 +14,22 @@
  * GPIO pin numbers
  */
 typedef enum{
-    GPIO_PIN_NO_0 = 0,
-    GPIO_PIN_NO_1 = 0,
-    GPIO_PIN_NO_2 = 0,
-    GPIO_PIN_NO_3 = 0,
-    GPIO_PIN_NO_4 = 0,
-    GPIO_PIN_NO_5 = 0,
-    GPIO_PIN_NO_6 = 0,
-    GPIO_PIN_NO_7 = 0,
-    GPIO_PIN_NO_8 = 0,
-    GPIO_PIN_NO_9 = 0,
-    GPIO_PIN_NO_10 = 0,
-    GPIO_PIN_NO_11 = 0,
-    GPIO_PIN_NO_12 = 0,
-    GPIO_PIN_NO_13 = 0,
-    GPIO_PIN_NO_14 = 0,
-    GPIO_PIN_NO_15 = 0,
+    GPIO_PIN_NO_0,
+    GPIO_PIN_NO_1,
+    GPIO_PIN_NO_2,
+    GPIO_PIN_NO_3,
+    GPIO_PIN_NO_4,
+    GPIO_PIN_NO_5,
+    GPIO_PIN_NO_6,
+    GPIO_PIN_NO_7,
+    GPIO_PIN_NO_8,
+    GPIO_PIN_NO_9,
+    GPIO_PIN_NO_10,
+    GPIO_PIN_NO_11,
+    GPIO_PIN_NO_12,
+    GPIO_PIN_NO_13,
+    GPIO_PIN_NO_14,
+    GPIO_PIN_NO_15
 }GPIO_Pin_Numbers_t;
 
 /*
@@ -60,7 +60,7 @@ typedef enum{
     GPIO_SPEED_LOW    = 0,      /* Low speed */
     GPIO_SPEED_MEDIUM = 1,      /* Medium speed */
     GPIO_SPEED_FAST   = 2,      /* High speed */
-    GPOI_SPEED_HIGH   = 3,      /* Very high speed*/
+    GPOI_SPEED_HIGH   = 3       /* Very high speed*/
 }GPIO_Pin_Speed_t;
 
 /*
@@ -82,7 +82,7 @@ typedef struct
     GPIO_Pin_Speed_t GPIO_PinSpeed;
     GPIO_Pin_PuPd_t GPIO_PinPuPdControl;
     GPIO_OutputType_t GPIO_PinOPType;
-    uint8_t GPIO_AltFuncMode;
+    uint8_t GPIO_PinAltFunMode;
 }GPIO_PinConfig_t;
 
 /*
