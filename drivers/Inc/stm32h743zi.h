@@ -397,4 +397,7 @@ typedef struct
 #define GPIOJ_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 9));  (RCC->AHB4RSTR &= ~(1 << 9)); }while(0)       /* GPIOJ block reset */
 #define GPIOK_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 10)); (RCC->AHB4RSTR &= ~(1 << 10)); }while(0)      /* GPIOK block reset */
 
+
+#include "stm32h743zi_gpio_driver.h"
+
 #endif /* INC_STM32H743ZI_H_ */
