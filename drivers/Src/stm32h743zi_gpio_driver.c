@@ -111,32 +111,51 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 
     /* 1. Configure the mode of gpio pin */
 
+    /* is pin mode cfg part of normal pin configurations  */
     if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG)
     {
         /* Non interrupt mode */
-
         temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
-        pGPIOHandle->pGPIOx->MODER &= ~( 0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); //clearing
-        pGPIOHandle->pGPIOx->MODER |= temp; //setting
+        pGPIOHandle->pGPIOx->MODER &= ~( 0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); /* clearing */
+        pGPIOHandle->pGPIOx->MODER |= temp; /* setting */
     }
     else
     {
-        /* TODO Interrupt mode */
+        /* Interrupt mode */
+        /* is pin mode cfg equal to falling edge? */
+        if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode ==GPIO_MODE_IT_FT )
+        {
+            /* I1. Configure the FTSR */
+        }else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode ==GPIO_MODE_IT_RT )
+        {
+            /* pin mode cfg equal to rising edge? */
+
+            /* I1. Configure the RTSR */
+        }else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RFT )
+        {
+            /* pin mode cfg equal to rising edge/falling edge? */
+
+            /* I1. Configure both FTSR and RTSR */
+        }
+
+        /* I2. configure the GPIO port selection in SYSCFG_EXTICR */
+
+        /* I3 . enable the exti interrupt delivery using IMR */
     }
 
     /* 2. Configure the speed */
     temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber) );
-    pGPIOHandle->pGPIOx->OSPEEDR &= ~( 0x3 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); //clearing
+    pGPIOHandle->pGPIOx->OSPEEDR &= ~( 0x3 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); /* clearing */
     pGPIOHandle->pGPIOx->OSPEEDR |= temp;
 
     /* 3. Configure the pupd settings */
     temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinPuPdControl << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber) );
-    pGPIOHandle->pGPIOx->PUPDR &= ~( 0x3 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); //clearing
+    pGPIOHandle->pGPIOx->PUPDR &= ~( 0x3 << ( 2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); /* clearing */
     pGPIOHandle->pGPIOx->PUPDR |= temp;
 
     /* 4. Configure the optype */
     temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber );
-    pGPIOHandle->pGPIOx->OTYPER &= ~( 0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber); //clearing
+    pGPIOHandle->pGPIOx->OTYPER &= ~( 0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber); /* clearing */
     pGPIOHandle->pGPIOx->OTYPER |= temp;
 
     /* 5. Configure the alt functionality */
@@ -145,7 +164,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
         /* Configure the alt function registers. */
         temp1 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber / 8;
         temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber  % 8;
-        pGPIOHandle->pGPIOx->AFR[temp1] &= ~(0xF << ( 4 * temp2 ) ); //clearing
+        pGPIOHandle->pGPIOx->AFR[temp1] &= ~(0xF << ( 4 * temp2 ) ); /* clearing */
         pGPIOHandle->pGPIOx->AFR[temp1] |= (pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFunMode << ( 4 * temp2 ) );
     }
 }
