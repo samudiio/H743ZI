@@ -145,13 +145,13 @@ typedef struct
     __v uint32_t CR;                    /* RCC Source Control Register                              Address offset: 0x00 */
     __v uint32_t ICSCR;                 /* RCC Internal Clock Source Calibration Register           Address offset: 0x04 */
     __v uint32_t CRRCR;                 /* RCC Clock Recovery RC Register                           Address offset: 0x08 */
-    uint32_t RESERVED0;                 /* Reserved                                                 Address offset: 0x0C */
+        uint32_t RESERVED0;             /* Reserved                                                 Address offset: 0x0C */
     __v uint32_t CFGR;                  /* RCC Clock Configuration Register                         Address offset: 0x10 */
     __v uint32_t RESERVED1;             /* Reserved                                                 Address offset: 0x14 */
     __v uint32_t D1CFGR;                /* RCC Domain 1 Clock Configuration Register                Address offset: 0x18 */
     __v uint32_t D2CFGR;                /* RCC Domain 2 Clock Configuration Register                Address offset: 0x1C */
     __v uint32_t D3CFGR;                /* RCC Domain 3 Clock Configuration Register                Address offset: 0x20 */
-    uint32_t RESERVED2;                 /* Reserved                                                 Address offset: 0x24 */
+        uint32_t RESERVED2;             /* Reserved                                                 Address offset: 0x24 */
     __v uint32_t PLLCKSELR;             /* RCC PLLs Clock Source Selection Register                 Address offset: 0x28 */
     __v uint32_t PLLCFGR;               /* RCC PLLs Configuration Register                          Address offset: 0x2C */
     __v uint32_t PLL1DIVR;              /* RCC PLL1 Dividers Configuration Register                 Address offset: 0x30 */
@@ -160,19 +160,19 @@ typedef struct
     __v uint32_t PLL2FRACR;             /* RCC PLL2 Fractional Divider Register                     Address offset: 0x3C */
     __v uint32_t PLL3DIVR;              /* RCC PLL3 Dividers Configuration Register                 Address offset: 0x40 */
     __v uint32_t PLL3FRACR;             /* RCC PLL3 Fractional Divider Register                     Address offset: 0x44 */
-    uint32_t RESERVED3;                 /* Reserved                                                 Address offset: 0x48 */
+        uint32_t RESERVED3;             /* Reserved                                                 Address offset: 0x48 */
     __v uint32_t D1CCIPR;               /* RCC Domain 1 Kernel Clock Configuration Register         Address offset: 0x4C */
     __v uint32_t D2CCIP1R;              /* RCC Domain 2 Kernel Clock Configuration Register         Address offset: 0x50 */
     __v uint32_t D2CCIP2R;              /* RCC Domain 2 Kernel Clock Configuration Register         Address offset: 0x54 */
     __v uint32_t D3CCIPR;               /* RCC Domain 3 Kernel Clock Configuration Register         Address offset: 0x58 */
-    uint32_t RESERVED4;                 /* Reserved                                                 Address offset: 0x5C */
+        uint32_t RESERVED4;             /* Reserved                                                 Address offset: 0x5C */
     __v uint32_t CIER;                  /* RCC Clock Source Interrupt Enable Register               Address offset: 0x60 */
     __v uint32_t CIFR;                  /* RCC Clock Source Interrupt Flag Register                 Address offset: 0x64 */
     __v uint32_t CICR;                  /* RCC Clock Source Interrupt Clear Register                Address offset: 0x68 */
-    uint32_t RESERVED5;                 /* Reserved                                                 Address offset: 0x6C */
+        uint32_t RESERVED5;             /* Reserved                                                 Address offset: 0x6C */
     __v uint32_t BDCR;                  /* RCC Backup Domain Control Register                       Address offset: 0x70 */
     __v uint32_t CSR;                   /* RCC Clock Control and Status Register                    Address offset: 0x74 */
-    uint32_t RESERVED6;                 /* Reserved                                                 Address offset: 0x78 */
+        uint32_t RESERVED6;             /* Reserved                                                 Address offset: 0x78 */
     __v uint32_t AHB3RSTR;              /* RCC AHB3 Reset Register                                  Address offset: 0x7C */
     __v uint32_t AHB1RSTR;              /* RCC AHB1 Peripheral Reset Register                       Address offset: 0x80 */
     __v uint32_t AHB2RSTR;              /* RCC AHB2 Peripheral Reset Register                       Address offset: 0x84 */
@@ -183,7 +183,7 @@ typedef struct
     __v uint32_t APB2RSTR;              /* RCC APB2 Peripheral Reset Register                       Address offset: 0x98 */
     __v uint32_t APB4RSTR;              /* RCC APB4 Peripheral Reset Register                       Address offset: 0x9C */
     __v uint32_t GCR;                   /* RCC Global Control Register                              Address offset: 0xA0 */
-    uint32_t RESERVED7;                 /* Reserved                                                 Address offset: 0xA4 */
+        uint32_t RESERVED7;             /* Reserved                                                 Address offset: 0xA4 */
     __v uint32_t D3AMR;                 /* RCC D3 Autonomous mode Register                          Address offset: 0xA8 */
     __v uint32_t RESERVED8[9];          /* Reserved, 0xAC-0xCC                                      Address offset: 0xAC */
     __v uint32_t RSR;                   /* RCC Reset Status Register                                Address offset: 0xD0 */
@@ -196,7 +196,7 @@ typedef struct
     __v uint32_t APB1HENR;              /* RCC APB1 Clock Register                                  Address offset: 0xEC */
     __v uint32_t APB2ENR;               /* RCC APB2 Clock Register                                  Address offset: 0xF0 */
     __v uint32_t APB4ENR;               /* RCC APB4 Clock Register                                  Address offset: 0xF4 */
-    uint32_t RESERVED9;                 /* Reserved                                                 Address offset: 0xF8 */
+        uint32_t RESERVED9;             /* Reserved                                                 Address offset: 0xF8 */
     __v uint32_t AHB3LPENR;             /* RCC AHB3 Sleep Clock Register                            Address offset: 0xFC */
     __v uint32_t AHB1LPENR;             /* RCC AHB1 Sleep Clock Register                            Address offset: 0x100 */
     __v uint32_t AHB2LPENR;             /* RCC AHB2 Sleep Clock Register                            Address offset: 0x104 */
@@ -206,7 +206,7 @@ typedef struct
     __v uint32_t APB1HLPENR;            /* RCC APB1 High Sleep Clock Register                       Address offset: 0x114 */
     __v uint32_t APB2LPENR;             /* RCC APB2 Sleep Clock Register                            Address offset: 0x118 */
     __v uint32_t APB4LPENR;             /* RCC APB4 Sleep Clock Register                            Address offset: 0x11C */
-    uint32_t RESERVED10[5];             /* Reserved, 0x120-0x130                                    Address offset: 0x120 */
+        uint32_t RESERVED10[5];         /* Reserved, 0x120-0x130                                    Address offset: 0x120 */
     __v uint32_t C1_AHB3ENR;            /* TODO                                                     Address offset: 0x134 */
     __v uint32_t C1_AHB1ENR;            /* TODO                                                     Address offset: 0x138 */
     __v uint32_t C1_AHB2ENR;            /* TODO                                                     Address offset: 0x13C */
@@ -216,7 +216,7 @@ typedef struct
     __v uint32_t C1_APB1HENR;           /* TODO                                                     Address offset: 0x14C */
     __v uint32_t C1_APB2ENR;            /* TODO                                                     Address offset: 0x150 */
     __v uint32_t C1_APB4ENR;            /* TODO                                                     Address offset: 0x154 */
-    uint32_t RESERVED11;                /* Reserved                                                 Address offset: 0x158 */
+        uint32_t RESERVED11;            /* Reserved                                                 Address offset: 0x158 */
     __v uint32_t C1_AHB3LPENR;          /* TODO                                                     Address offset: 0x15C */
     __v uint32_t C1_AHB1LPENR;          /* TODO                                                     Address offset: 0x160 */
     __v uint32_t C1_AHB2LPENR;          /* TODO                                                     Address offset: 0x164 */
@@ -226,7 +226,7 @@ typedef struct
     __v uint32_t C1_APB1HLPENR;         /* TODO                                                     Address offset: 0x174 */
     __v uint32_t C1_APB2LPENR;          /* TODO                                                     Address offset: 0x178 */
     __v uint32_t C1_APB4LPENR;          /* TODO                                                     Address offset: 0x17C */
-    uint32_t RESERVED12[32];            /* Reserved, 0x180-0x1FC                                    Address offset: 0x180 */
+        uint32_t RESERVED12[32];        /* Reserved, 0x180-0x1FC                                    Address offset: 0x180 */
 }RCC_RegDef_t;
 
 /*
@@ -234,23 +234,23 @@ typedef struct
  */
 typedef struct
 {
-     uint32_t RESERVED0;                /* Reserved                                                  Address offset: 0x00 */
+         uint32_t RESERVED0;            /* Reserved                                                  Address offset: 0x00 */
      __v uint32_t PMCR;                 /* SYSCFG peripheral mode configuration register             Address offset: 0x04 */
      __v uint32_t EXTICR1;              /* SYSCFG external interrupt configuration register 1        Address offset: 0x08 */
      __v uint32_t EXTICR2;              /* SYSCFG external interrupt configuration register 2        Address offset: 0x0C */
      __v uint32_t EXTICR3;              /* SYSCFG external interrupt configuration register 3        Address offset: 0x10 */
      __v uint32_t EXTICR4;              /* SYSCFG external interrupt configuration register 4        Address offset: 0x14 */
      __v uint32_t CFGR;                 /* SYSCFG configuration register                             Address offset: 0x18 */
-     uint32_t RESERVED1;                /* Reserved                                                  Address offset: 0x1C */
+         uint32_t RESERVED1;            /* Reserved                                                  Address offset: 0x1C */
      __v uint32_t CCSR;                 /* SYSCFG compensation cell control/status register          Address offset: 0x20 */
      __v uint32_t CCVR;                 /* SYSCFG compensation cell value register                   Address offset: 0x24 */
      __v uint32_t CCCR;                 /* SYSCFG compensation cell code register                    Address offset: 0x28 */
      __v uint32_t PWRCR;                /* SYSCFG power control register                             Address offset: 0x2C */
-     uint32_t RESERVED2[61];            /* Reserved, 0x30-0x120                                      Address offset: 0x30 */
+         uint32_t RESERVED2[61];        /* Reserved, 0x30-0x120                                      Address offset: 0x30 */
      __v uint32_t PKGR;                 /* SYSCFG SYSCFG package register                            Address offset: 0x124 */
-     uint32_t RESERVED3[118];           /* Reserved, 0x128-0x2FC                                     Address offset: 0x128 */
+         uint32_t RESERVED3[118];       /* Reserved, 0x128-0x2FC                                     Address offset: 0x128 */
      __v uint32_t UR0;                  /* SYSCFG user register 0                                    Address offset: 0x300 */
-     uint32_t RESERVED4;                /* Reserved                                                  Address offset: 0x304 */
+         uint32_t RESERVED4;            /* Reserved                                                  Address offset: 0x304 */
      __v uint32_t UR2;                  /* SYSCFG user register 2                                    Address offset: 0x308 */
      __v uint32_t UR3;                  /* SYSCFG user register 3                                    Address offset: 0x30C */
      __v uint32_t UR4;                  /* SYSCFG user register 4                                    Address offset: 0x310 */
@@ -268,6 +268,42 @@ typedef struct
      __v uint32_t UR16;                 /* SYSCFG user register 16                                   Address offset: 0x340 */
      __v uint32_t UR17;                 /* SYSCFG user register 17                                   Address offset: 0x344 */
 }SYSCFG_RegDef_t;
+
+/*
+ * Peripheral register definition structure for EXTI.
+ */
+typedef struct
+{
+    __v uint32_t RTSR1;                 /* EXTI rising trigger selection register                   Address offset: 0x00 */
+    __v uint32_t FTSR1;                 /* EXTI falling trigger selection register                  Address offset: 0x04 */
+    __v uint32_t SWIER1;                /* EXTI software interrupt event register                   Address offset: 0x08 */
+    __v uint32_t D3PMR1;                /* EXTI D3 pending mask register                            Address offset: 0x0C */
+    __v uint32_t D3PCR1L;               /* EXTI D3 pending clear selection register low             Address offset: 0x10 */
+    __v uint32_t D3PCR1H;               /* EXTI D3 pending clear selection register high            Address offset: 0x14 */
+    __v uint32_t RTSR2;                 /* EXTI rising trigger selection register                   Address offset: 0x20 */
+    __v uint32_t FTSR2;                 /* EXTI falling trigger selection register                  Address offset: 0x24 */
+    __v uint32_t SWIER2;                /* EXTI software interrupt event register                   Address offset: 0x28 */
+    __v uint32_t D3PMR2;                /* EXTI D3 pending mask register                            Address offset: 0x2C */
+    __v uint32_t D3PCR2L;               /* EXTI D3 pending clear selection register low             Address offset: 0x30 */
+    __v uint32_t D3PCR2H;               /* EXTI D3 pending clear selection register high            Address offset: 0x34 */
+    __v uint32_t RTSR3;                 /* EXTI rising trigger selection register                   Address offset: 0x40 */
+    __v uint32_t FTSR3;                 /* EXTI falling trigger selection register                  Address offset: 0x44 */
+    __v uint32_t SWIER3;                /* EXTI software interrupt event register                   Address offset: 0x48 */
+    __v uint32_t D3PMR3;                /* EXTI D3 pending mask register                            Address offset: 0x4C */
+    __v uint32_t D3PCR3L;               /* EXTI D3 pending clear selection register low             Address offset: 0x50 */
+    __v uint32_t D3PCR3H;               /* EXTI D3 pending clear selection register high            Address offset: 0x54 */
+        uint32_t RESERVED0[10];         /* Reserved, 0x58-0x7C                                      Address offset: 0x58 */
+    __v uint32_t CPUIMR1;               /* EXTI interrupt mask register                             Address offset: 0x80 */
+    __v uint32_t CPUEMR1;               /* EXTI event mask register                                 Address offset: 0x84 */
+    __v uint32_t CPUPR1;                /* EXTI pending register                                    Address offset: 0x88 */
+    __v uint32_t CPUIMR2;               /* EXTI interrupt mask register                             Address offset: 0x90 */
+    __v uint32_t CPUEMR2;               /* EXTI event mask register                                 Address offset: 0x94 */
+    __v uint32_t CPUPR2;                /* EXTI pending register                                    Address offset: 0x98 */
+    __v uint32_t CPUIMR3;               /* EXTI interrupt mask register                             Address offset: 0xA0 */
+    __v uint32_t CPUEMR3;               /* EXTI event mask register                                 Address offset: 0xA4 */
+    __v uint32_t CPUPR3;                /* EXTI pending register                                    Address offset: 0xA8 */
+        uint32_t RESERVED1[5];          /* Reserved, 0xAC-0xBC                                      Address offset: 0xAC */
+}EXTI_RegDef_t;
 
 /**********************************************
  * Peripheral definitions (Peripheral base address typecasted to xxx_RegDef_t)
@@ -287,7 +323,9 @@ typedef struct
 
 #define RCC                     ((RCC_RegDef_t*) RCC_BASEADDR)
 
-#define SYSCFG                  ((SYSCFG_RegDef_t*) SYSCFG_BASEADDR)        /*SYSCFG Base address typecasted*/
+#define SYSCFG                  ((SYSCFG_RegDef_t*) SYSCFG_BASEADDR)        /* SYSCFG Base address type casted */
+
+#define EXTI                    ((EXTI_RegDef_t*) EXTI_BASEADDR)
 
 /**********************************************
  * Clock Enable Macros for GPIOx peripherals

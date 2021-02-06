@@ -114,33 +114,48 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
     /* is pin mode cfg part of normal pin configurations  */
     if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG)
     {
-        /* Non interrupt mode */
+        /* --- Non interrupt mode ---*/
+
         temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
         pGPIOHandle->pGPIOx->MODER &= ~( 0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); /* clearing */
         pGPIOHandle->pGPIOx->MODER |= temp; /* setting */
     }
     else
     {
-        /* Interrupt mode */
-        /* is pin mode cfg equal to falling edge? */
+        /* --- Interrupt mode ---*/
+
+        /* is pin mode configured as falling edge? */
         if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode ==GPIO_MODE_IT_FT )
         {
-            /* I1. Configure the FTSR */
+            /* I1. Configure the FTSR1 */
+            EXTI->FTSR1 |= (1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+
+            /* Clear the corresponding RTSR1 bit */
+            EXTI->RTSR1 &= ~(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+
         }else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode ==GPIO_MODE_IT_RT )
         {
-            /* pin mode cfg equal to rising edge? */
+            /* pin mode configured as rising edge */
 
-            /* I1. Configure the RTSR */
+            /* I1. Configure the RTSR1 */
+            EXTI->RTSR1 |= (1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+
+            /* Clear the corresponding FTSR1 bit */
+            EXTI->FTSR1 &= ~(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+
         }else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RFT )
         {
-            /* pin mode cfg equal to rising edge/falling edge? */
+            /* pin mode configured as rising edge/falling edge */
 
             /* I1. Configure both FTSR and RTSR */
+            EXTI->FTSR1 |= (1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+            EXTI->RTSR1 |= (1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
         }
 
         /* I2. configure the GPIO port selection in SYSCFG_EXTICR */
 
-        /* I3 . enable the exti interrupt delivery using IMR */
+        /* I3 . enable the exti interrupt delivery using CPUIMR1 */
+        EXTI->CPUIMR1 |= (1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
     }
 
     /* 2. Configure the speed */
