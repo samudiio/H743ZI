@@ -108,6 +108,9 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
     uint32_t temp = 0; /*Temp register */
     uint8_t temp1, temp2;
+    uint8_t cr_num;
+    uint8_t cr_startbit;
+    uint8_t portcode;
 
     /* 1. Configure the mode of gpio pin */
 
@@ -153,6 +156,11 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
         }
 
         /* I2. configure the GPIO port selection in SYSCFG_EXTICR */
+        cr_num = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber / 4;
+        cr_startbit = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 4;
+        portcode = GPIO_BASEADDR_TO_CODE(pGPIOHandle->pGPIOx);
+        SYSCFG_PCLK_EN();
+        SYSCFG->EXTICR[cr_num] = portcode << (cr_startbit * 4);
 
         /* I3 . enable the exti interrupt delivery using CPUIMR1 */
         EXTI->CPUIMR1 |= (1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);

@@ -14,17 +14,6 @@
 #define __v volatile
 
 /**********************************************
- * Generic Macros
- ***********************************************/
-
-#define ENABLE                  1
-#define DISABLE                 0
-#define SET                     ENABLE
-#define RESET                   DISABLE
-#define GPIO_PIN_SET            SET
-#define GPIO_PIN_RESET          RESET
-
-/**********************************************
  * Base addresses of Flash and SRAM memories
  ***********************************************/
 #define FLASH_BASEADDR          0x08000000U
@@ -236,10 +225,10 @@ typedef struct
 {
          uint32_t RESERVED0;            /* Reserved                                                  Address offset: 0x00 */
      __v uint32_t PMCR;                 /* SYSCFG peripheral mode configuration register             Address offset: 0x04 */
-     __v uint32_t EXTICR1;              /* SYSCFG external interrupt configuration register 1        Address offset: 0x08 */
-     __v uint32_t EXTICR2;              /* SYSCFG external interrupt configuration register 2        Address offset: 0x0C */
-     __v uint32_t EXTICR3;              /* SYSCFG external interrupt configuration register 3        Address offset: 0x10 */
-     __v uint32_t EXTICR4;              /* SYSCFG external interrupt configuration register 4        Address offset: 0x14 */
+     __v uint32_t EXTICR[4];            /* EXTICR[0]: SYSCFG ext interrupt configuration register 1  Address offset: 0x08 */
+                                        /* EXTICR[1]: SYSCFG ext interrupt configuration register 2  Address offset: 0x0C */
+                                        /* EXTICR[2]: SYSCFG ext interrupt configuration register 3  Address offset: 0x10 */
+                                        /* EXTICR[3]: SYSCFG ext interrupt configuration register 4  Address offset: 0x14 */
      __v uint32_t CFGR;                 /* SYSCFG configuration register                             Address offset: 0x18 */
          uint32_t RESERVED1;            /* Reserved                                                  Address offset: 0x1C */
      __v uint32_t CCSR;                 /* SYSCFG compensation cell control/status register          Address offset: 0x20 */
@@ -309,133 +298,176 @@ typedef struct
  * Peripheral definitions (Peripheral base address typecasted to xxx_RegDef_t)
  ***********************************************/
 
-#define GPIOA                   ((GPIO_RegDef_t*) GPIOA_BASEADDR)
-#define GPIOB                   ((GPIO_RegDef_t*) GPIOB_BASEADDR)
-#define GPIOC                   ((GPIO_RegDef_t*) GPIOC_BASEADDR)
-#define GPIOD                   ((GPIO_RegDef_t*) GPIOD_BASEADDR)
-#define GPIOE                   ((GPIO_RegDef_t*) GPIOE_BASEADDR)
-#define GPIOF                   ((GPIO_RegDef_t*) GPIOF_BASEADDR)
-#define GPIOG                   ((GPIO_RegDef_t*) GPIOG_BASEADDR)
-#define GPIOH                   ((GPIO_RegDef_t*) GPIOH_BASEADDR)
-#define GPIOI                   ((GPIO_RegDef_t*) GPIOI_BASEADDR)
-#define GPIOJ                   ((GPIO_RegDef_t*) GPIOJ_BASEADDR)
-#define GPIOK                   ((GPIO_RegDef_t*) GPIOK_BASEADDR)
+#define GPIOA                           ((GPIO_RegDef_t*) GPIOA_BASEADDR)
+#define GPIOB                           ((GPIO_RegDef_t*) GPIOB_BASEADDR)
+#define GPIOC                           ((GPIO_RegDef_t*) GPIOC_BASEADDR)
+#define GPIOD                           ((GPIO_RegDef_t*) GPIOD_BASEADDR)
+#define GPIOE                           ((GPIO_RegDef_t*) GPIOE_BASEADDR)
+#define GPIOF                           ((GPIO_RegDef_t*) GPIOF_BASEADDR)
+#define GPIOG                           ((GPIO_RegDef_t*) GPIOG_BASEADDR)
+#define GPIOH                           ((GPIO_RegDef_t*) GPIOH_BASEADDR)
+#define GPIOI                           ((GPIO_RegDef_t*) GPIOI_BASEADDR)
+#define GPIOJ                           ((GPIO_RegDef_t*) GPIOJ_BASEADDR)
+#define GPIOK                           ((GPIO_RegDef_t*) GPIOK_BASEADDR)
 
-#define RCC                     ((RCC_RegDef_t*) RCC_BASEADDR)
+#define RCC                             ((RCC_RegDef_t*) RCC_BASEADDR)
 
-#define SYSCFG                  ((SYSCFG_RegDef_t*) SYSCFG_BASEADDR)        /* SYSCFG Base address type casted */
+#define SYSCFG                          ((SYSCFG_RegDef_t*) SYSCFG_BASEADDR)        /* SYSCFG Base address type casted */
 
-#define EXTI                    ((EXTI_RegDef_t*) EXTI_BASEADDR)
+#define EXTI                            ((EXTI_RegDef_t*) EXTI_BASEADDR)
 
 /**********************************************
  * Clock Enable Macros for GPIOx peripherals
  ***********************************************/
 
-#define GPIOA_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 0) )                /* 1: GPIOA peripheral clock enabled */
-#define GPIOB_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 1) )                /* 1: GPIOB peripheral clock enabled */
-#define GPIOC_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 2) )                /* 1: GPIOC peripheral clock enabled */
-#define GPIOD_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 3) )                /* 1: GPIOD peripheral clock enabled */
-#define GPIOE_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 4) )                /* 1: GPIOE peripheral clock enabled */
-#define GPIOF_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 5) )                /* 1: GPIOF peripheral clock enabled */
-#define GPIOG_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 6) )                /* 1: GPIOG peripheral clock enabled */
-#define GPIOH_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 7) )                /* 1: GPIOH peripheral clock enabled */
-#define GPIOI_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 8) )                /* 1: GPIOI peripheral clock enabled */
-#define GPIOJ_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 9) )                /* 1: GPIOJ peripheral clock enabled */
-#define GPIOK_PCLK_EN()         ( RCC->AHB4ENR |= (1 << 10) )               /* 1: GPIOK peripheral clock enabled */
+#define GPIOA_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 0) )                /* 1: GPIOA peripheral clock enabled */
+#define GPIOB_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 1) )                /* 1: GPIOB peripheral clock enabled */
+#define GPIOC_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 2) )                /* 1: GPIOC peripheral clock enabled */
+#define GPIOD_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 3) )                /* 1: GPIOD peripheral clock enabled */
+#define GPIOE_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 4) )                /* 1: GPIOE peripheral clock enabled */
+#define GPIOF_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 5) )                /* 1: GPIOF peripheral clock enabled */
+#define GPIOG_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 6) )                /* 1: GPIOG peripheral clock enabled */
+#define GPIOH_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 7) )                /* 1: GPIOH peripheral clock enabled */
+#define GPIOI_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 8) )                /* 1: GPIOI peripheral clock enabled */
+#define GPIOJ_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 9) )                /* 1: GPIOJ peripheral clock enabled */
+#define GPIOK_PCLK_EN()                 ( RCC->AHB4ENR |= (1 << 10) )               /* 1: GPIOK peripheral clock enabled */
 
 /**********************************************
  * Clock Enable Macros for I2Cx peripherals
  ***********************************************/
 
-#define I2C1_PCLK_EN()          ( RCC->APB1LENR |= (1 << 21) )              /* 1: I2C1 peripheral clocks enabled */
-#define I2C2_PCLK_EN()          ( RCC->APB1LENR |= (1 << 22) )              /* 1: I2C2 peripheral clocks enabled */
-#define I2C3_PCLK_EN()          ( RCC->APB1LENR |= (1 << 23) )              /* 1: I2C2 peripheral clocks enabled */
+#define I2C1_PCLK_EN()                  ( RCC->APB1LENR |= (1 << 21) )              /* 1: I2C1 peripheral clocks enabled */
+#define I2C2_PCLK_EN()                  ( RCC->APB1LENR |= (1 << 22) )              /* 1: I2C2 peripheral clocks enabled */
+#define I2C3_PCLK_EN()                  ( RCC->APB1LENR |= (1 << 23) )              /* 1: I2C2 peripheral clocks enabled */
 
 /**********************************************
  * Clock Enable Macros for SPIx peripherals
  ***********************************************/
 
-#define SPI2_PCLK_EN()          ( RCC->APB1LENR |= (1 << 14) )              /* 1: SPI2 peripheral clocks enabled */
-#define SPI3_PCLK_EN()          ( RCC->APB1LENR |= (1 << 15) )              /* 1: SPI3 peripheral clocks enabled */
+#define SPI2_PCLK_EN()                  ( RCC->APB1LENR |= (1 << 14) )              /* 1: SPI2 peripheral clocks enabled */
+#define SPI3_PCLK_EN()                  ( RCC->APB1LENR |= (1 << 15) )              /* 1: SPI3 peripheral clocks enabled */
 
 /**********************************************
  * Clock Enable Macros for USARTx peripherals
  ***********************************************/
 
-#define USART2_PCLK_EN()        ( RCC->APB1LENR |= (1 << 17) )              /* 1: USART2 peripheral clocks enabled */
-#define USART3_PCLK_EN()        ( RCC->APB1LENR |= (1 << 18) )              /* 1: USART3 peripheral clocks enabled */
-#define UART4_PCLK_EN()         ( RCC->APB1LENR |= (1 << 19) )              /* 1: UART4 peripheral clocks enabled */
-#define UART5_PCLK_EN()         ( RCC->APB1LENR |= (1 << 20) )              /* 1: UART5 peripheral clocks enabled */
+#define USART2_PCLK_EN()                ( RCC->APB1LENR |= (1 << 17) )              /* 1: USART2 peripheral clocks enabled */
+#define USART3_PCLK_EN()                ( RCC->APB1LENR |= (1 << 18) )              /* 1: USART3 peripheral clocks enabled */
+#define UART4_PCLK_EN()                 ( RCC->APB1LENR |= (1 << 19) )              /* 1: UART4 peripheral clocks enabled */
+#define UART5_PCLK_EN()                 ( RCC->APB1LENR |= (1 << 20) )              /* 1: UART5 peripheral clocks enabled */
 
 /**********************************************
  * Clock Enable Macros for SYSCFG peripheral
  ***********************************************/
 
-#define SYSCFG_PCLK_EN()        ( RCC->APB4ENR |= (1 << 1) )                /* 1: SYSCFG peripheral clock enabled */
+#define SYSCFG_PCLK_EN()                ( RCC->APB4ENR |= (1 << 1) )                /* 1: SYSCFG peripheral clock enabled */
 
 /**********************************************
  * Clock Disable Macros for GPIOx peripherals
  ***********************************************/
 
-#define GPIOA_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 0) )               /* 0: GPIOA peripheral clock disabled */
-#define GPIOB_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 1) )               /* 0: GPIOB peripheral clock disabled */
-#define GPIOC_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 2) )               /* 0: GPIOC peripheral clock disabled */
-#define GPIOD_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 3) )               /* 0: GPIOD peripheral clock disabled */
-#define GPIOE_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 4) )               /* 0: GPIOE peripheral clock disabled */
-#define GPIOF_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 5) )               /* 0: GPIOF peripheral clock disabled */
-#define GPIOG_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 6) )               /* 0: GPIOG peripheral clock disabled */
-#define GPIOH_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 7) )               /* 0: GPIOH peripheral clock disabled */
-#define GPIOI_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 8) )               /* 0: GPIOI peripheral clock disabled */
-#define GPIOJ_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 9) )               /* 0: GPIOJ peripheral clock disabled */
-#define GPIOK_PCLK_DI()         ( RCC->AHB4ENR &= ~(1 << 10) )              /* 0: GPIOK peripheral clock disabled */
+#define GPIOA_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 0) )               /* 0: GPIOA peripheral clock disabled */
+#define GPIOB_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 1) )               /* 0: GPIOB peripheral clock disabled */
+#define GPIOC_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 2) )               /* 0: GPIOC peripheral clock disabled */
+#define GPIOD_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 3) )               /* 0: GPIOD peripheral clock disabled */
+#define GPIOE_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 4) )               /* 0: GPIOE peripheral clock disabled */
+#define GPIOF_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 5) )               /* 0: GPIOF peripheral clock disabled */
+#define GPIOG_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 6) )               /* 0: GPIOG peripheral clock disabled */
+#define GPIOH_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 7) )               /* 0: GPIOH peripheral clock disabled */
+#define GPIOI_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 8) )               /* 0: GPIOI peripheral clock disabled */
+#define GPIOJ_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 9) )               /* 0: GPIOJ peripheral clock disabled */
+#define GPIOK_PCLK_DI()                 ( RCC->AHB4ENR &= ~(1 << 10) )              /* 0: GPIOK peripheral clock disabled */
 
 /**********************************************
  * Clock Disable Macros for I2Cx peripherals
  ***********************************************/
 
-#define I2C1_PCLK_DI()          ( RCC->APB1LENR &= ~(1 << 21) )             /* 0: I2C1 peripheral clocks disabled */
-#define I2C2_PCLK_DI()          ( RCC->APB1LENR &= ~(1 << 22) )             /* 0: I2C2 peripheral clocks disabled */
-#define I2C3_PCLK_DI()          ( RCC->APB1LENR &= ~(1 << 23) )             /* 0: I2C2 peripheral clocks disabled */
+#define I2C1_PCLK_DI()                  ( RCC->APB1LENR &= ~(1 << 21) )             /* 0: I2C1 peripheral clocks disabled */
+#define I2C2_PCLK_DI()                  ( RCC->APB1LENR &= ~(1 << 22) )             /* 0: I2C2 peripheral clocks disabled */
+#define I2C3_PCLK_DI()                  ( RCC->APB1LENR &= ~(1 << 23) )             /* 0: I2C2 peripheral clocks disabled */
 
 /**********************************************
  * Clock Disable Macros for SPIx peripherals
  ***********************************************/
 
-#define SPI2_PCLK_DI()          ( RCC->APB1LENR &= ~(1 << 14) )             /* 0: SPI2 peripheral clocks disabled */
-#define SPI3_PCLK_DI()          ( RCC->APB1LENR &= ~(1 << 15) )             /* 0: SPI3 peripheral clocks disabled */
+#define SPI2_PCLK_DI()                  ( RCC->APB1LENR &= ~(1 << 14) )             /* 0: SPI2 peripheral clocks disabled */
+#define SPI3_PCLK_DI()                  ( RCC->APB1LENR &= ~(1 << 15) )             /* 0: SPI3 peripheral clocks disabled */
 
 /**********************************************
  * Clock Disable Macros for USARTx peripherals
  ***********************************************/
 
-#define USART2_PCLK_DI()        ( RCC->APB1LENR &= ~(1 << 17) )             /* 0: USART2 peripheral clocks disabled */
-#define USART3_PCLK_DI()        ( RCC->APB1LENR &= ~(1 << 18) )             /* 0: USART3 peripheral clocks disabled */
-#define UART4_PCLK_DI()         ( RCC->APB1LENR &= ~(1 << 19) )             /* 0: UART4 peripheral clocks disabled */
-#define UART5_PCLK_DI()         ( RCC->APB1LENR &= ~(1 << 20) )             /* 0: UART5 peripheral clocks disabled */
+#define USART2_PCLK_DI()                ( RCC->APB1LENR &= ~(1 << 17) )             /* 0: USART2 peripheral clocks disabled */
+#define USART3_PCLK_DI()                ( RCC->APB1LENR &= ~(1 << 18) )             /* 0: USART3 peripheral clocks disabled */
+#define UART4_PCLK_DI()                 ( RCC->APB1LENR &= ~(1 << 19) )             /* 0: UART4 peripheral clocks disabled */
+#define UART5_PCLK_DI()                 ( RCC->APB1LENR &= ~(1 << 20) )             /* 0: UART5 peripheral clocks disabled */
 
 /**********************************************
  * Clock Disable Macros for SYSCFG peripheral
  ***********************************************/
 
-#define SYSCFG_PCLK_DI()        ( RCC->APB4ENR &= ~(1 << 1) )               /* 0: SYSCFG peripheral clock disabled */
+#define SYSCFG_PCLK_DI()                ( RCC->APB4ENR &= ~(1 << 1) )               /* 0: SYSCFG peripheral clock disabled */
 
 /**********************************************
  * Macros to reset GPIOx peripherals
  ***********************************************/
 
-#define GPIOA_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 0));  (RCC->AHB4RSTR &= ~(1 << 0)); }while(0)       /* GPIOA block reset */
-#define GPIOB_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 1));  (RCC->AHB4RSTR &= ~(1 << 1)); }while(0)       /* GPIOB block reset */
-#define GPIOC_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 2));  (RCC->AHB4RSTR &= ~(1 << 2)); }while(0)       /* GPIOC block reset */
-#define GPIOD_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 3));  (RCC->AHB4RSTR &= ~(1 << 3)); }while(0)       /* GPIOD block reset */
-#define GPIOE_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 4));  (RCC->AHB4RSTR &= ~(1 << 4)); }while(0)       /* GPIOE block reset */
-#define GPIOF_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 5));  (RCC->AHB4RSTR &= ~(1 << 5)); }while(0)       /* GPIOF block reset */
-#define GPIOG_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 6));  (RCC->AHB4RSTR &= ~(1 << 6)); }while(0)       /* GPIOG block reset */
-#define GPIOH_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 7));  (RCC->AHB4RSTR &= ~(1 << 7)); }while(0)       /* GPIOH block reset */
-#define GPIOI_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 8));  (RCC->AHB4RSTR &= ~(1 << 8)); }while(0)       /* GPIOI block reset */
-#define GPIOJ_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 9));  (RCC->AHB4RSTR &= ~(1 << 9)); }while(0)       /* GPIOJ block reset */
-#define GPIOK_REG_RESET()       do{ (RCC->AHB4RSTR |= (1 << 10)); (RCC->AHB4RSTR &= ~(1 << 10)); }while(0)      /* GPIOK block reset */
+#define GPIOA_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 0));  (RCC->AHB4RSTR &= ~(1 << 0)); }while(0)       /* GPIOA block reset */
+#define GPIOB_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 1));  (RCC->AHB4RSTR &= ~(1 << 1)); }while(0)       /* GPIOB block reset */
+#define GPIOC_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 2));  (RCC->AHB4RSTR &= ~(1 << 2)); }while(0)       /* GPIOC block reset */
+#define GPIOD_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 3));  (RCC->AHB4RSTR &= ~(1 << 3)); }while(0)       /* GPIOD block reset */
+#define GPIOE_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 4));  (RCC->AHB4RSTR &= ~(1 << 4)); }while(0)       /* GPIOE block reset */
+#define GPIOF_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 5));  (RCC->AHB4RSTR &= ~(1 << 5)); }while(0)       /* GPIOF block reset */
+#define GPIOG_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 6));  (RCC->AHB4RSTR &= ~(1 << 6)); }while(0)       /* GPIOG block reset */
+#define GPIOH_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 7));  (RCC->AHB4RSTR &= ~(1 << 7)); }while(0)       /* GPIOH block reset */
+#define GPIOI_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 8));  (RCC->AHB4RSTR &= ~(1 << 8)); }while(0)       /* GPIOI block reset */
+#define GPIOJ_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 9));  (RCC->AHB4RSTR &= ~(1 << 9)); }while(0)       /* GPIOJ block reset */
+#define GPIOK_REG_RESET()               do{ (RCC->AHB4RSTR |= (1 << 10)); (RCC->AHB4RSTR &= ~(1 << 10)); }while(0)      /* GPIOK block reset */
 
+/**********************************************
+ * Macro to return port code for given GPIOx base address
+ * Returns a code (between 0 to 7) for a given GPIO base address(x)
+ ***********************************************/
 
+#define GPIO_BASEADDR_TO_CODE(x)        ( (x == GPIOA)?0:\
+                                          (x == GPIOB)?1:\
+                                          (x == GPIOC)?2:\
+                                          (x == GPIOD)?3:\
+                                          (x == GPIOE)?4:\
+                                          (x == GPIOF)?5:\
+                                          (x == GPIOG)?6:\
+                                          (x == GPIOH)?7:\
+                                          (x == GPIOI)?8:\
+                                          (x == GPIOJ)?9:\
+                                          (x == GPIOK)?10:0 )
+
+/**********************************************
+ * IRQ(Interrupt Request) Numbers
+ * TODO: Complete this list for other peripherals
+ ***********************************************/
+
+#define IRQ_NO_EXTI0        6
+#define IRQ_NO_EXTI1        7
+#define IRQ_NO_EXTI2        8
+#define IRQ_NO_EXTI3        9
+#define IRQ_NO_EXTI4        10
+#define IRQ_NO_EXTI9_5      23
+#define IRQ_NO_EXTI15_10    40
+
+/**********************************************
+ * Generic Macros
+ ***********************************************/
+
+#define ENABLE                  1
+#define DISABLE                 0
+#define SET                     ENABLE
+#define RESET                   DISABLE
+#define GPIO_PIN_SET            SET
+#define GPIO_PIN_RESET          RESET
+
+/**********************************************
+ * Include headers
+ ***********************************************/
 #include "stm32h743zi_gpio_driver.h"
 
 #endif /* INC_STM32H743ZI_H_ */
