@@ -320,14 +320,14 @@ void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 
 /*********************************************************************
  * @fn                - GPIO_IRQConfig
- * @brief             -
+ * @brief             - Configuration of the NVIC registers of the ARM Cortex-M processor
  * @param[in]         - IRQ number
  * @param[in]         - IRQ priority
  * @param[in]         - Enable or disable
  * @return            -
  * @Note              - Processor specific configuration
  */
-void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EnorDi)
+void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t EnorDi)
 {
     if(EnorDi == ENABLE)
     {
@@ -384,7 +384,7 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EnorDi)
 
 /*********************************************************************
  * @fn                - SPI_IRQPriorityConfig
- * @brief             -
+ * @brief             - Configuration of the NVIC registers of the ARM Cortex-M processor
  * @param[in]         -
  * @param[in]         -
  * @return            -
@@ -392,7 +392,14 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EnorDi)
  */
 void GPIO_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
 {
+    //1. first lets find out the IPR register
+    uint8_t iprx = IRQNumber / 4;
+    uint8_t iprx_section  = IRQNumber %4 ;
 
+    uint8_t shift_amount = ( 8 * iprx_section) + ( 8 - NVIC_PRIO_BITS_IMPLEMENTED) ;
+
+    /* Jump by 4; 32bits register*/
+    *(  NVIC_IPR_BASEADDR + (iprx * 4) ) |=  ( IRQPriority << shift_amount );
 }
 
 /*********************************************************************

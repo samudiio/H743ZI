@@ -32,14 +32,24 @@
  * ARM Cortex®-M7 Processor NVIC ICERx register Addresses
  ***********************************************/
 
-#define NVIC_ICER0          ((__vo uint32_t*)0xE000E180)
-#define NVIC_ICER1          ((__vo uint32_t*)0xE000E184)
-#define NVIC_ICER2          ((__vo uint32_t*)0xE000E188)
-#define NVIC_ICER3          ((__vo uint32_t*)0xE000E18C)
-#define NVIC_ICER4          ((__vo uint32_t*)0xE000E190)
-#define NVIC_ICER5          ((__vo uint32_t*)0xE000E194)
-#define NVIC_ICER6          ((__vo uint32_t*)0xE000E198)
-#define NVIC_ICER7          ((__vo uint32_t*)0xE000E19C)
+#define NVIC_ICER0          ( (__vo uint32_t*)0xE000E180 )
+#define NVIC_ICER1          ( (__vo uint32_t*)0xE000E184 )
+#define NVIC_ICER2          ( (__vo uint32_t*)0xE000E188 )
+#define NVIC_ICER3          ( (__vo uint32_t*)0xE000E18C )
+#define NVIC_ICER4          ( (__vo uint32_t*)0xE000E190 )
+#define NVIC_ICER5          ( (__vo uint32_t*)0xE000E194 )
+#define NVIC_ICER6          ( (__vo uint32_t*)0xE000E198 )
+#define NVIC_ICER7          ( (__vo uint32_t*)0xE000E19C )
+
+/**********************************************
+ * ARM Cortex®-M7 Processor Priority Register Base Address
+ ***********************************************/
+#define NVIC_IPR_BASEADDR   ( (__vo uint32_t*)0xE000E400 )
+
+/*
+ * ARM Cortex Mx Processor number of priority bits implemented in Priority Register
+ */
+#define NVIC_PRIO_BITS_IMPLEMENTED  4       /*!< CM7 uses 4 Bits for the Priority Levels       */
 
 /********************************** START: MCU Specific Details **********************************/
 
