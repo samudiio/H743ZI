@@ -333,34 +333,51 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EnorDi)
     {
         if(IRQNumber <= 31) /* 0 to 31 */
         {
-            //program ISER0 register
+            /* Program ISER0 register */
             *NVIC_ISER0 |= ( 1 << IRQNumber );
 
         }else if(IRQNumber > 31 && IRQNumber < 64 ) /* 32 to 63 */
         {
-            //program ISER1 register
+            /* Program ISER1 register */
             *NVIC_ISER1 |= ( 1 << (IRQNumber % 32) );
-        }
-        else if(IRQNumber >= 64 && IRQNumber < 96 )  /* 64 to 95 */
+        }else if(IRQNumber >= 64 && IRQNumber < 96 )  /* 64 to 95 */
         {
-            //program ISER2 register
+            /* Program ISER2 register */
             *NVIC_ISER2 |= ( 1 << (IRQNumber % 64) );
+        }else if(IRQNumber >= 96 && IRQNumber < 128 )  /* 96 to 127 */
+        {
+            /* Program ISER3 register */
+            *NVIC_ISER3 |= ( 1 << (IRQNumber % 96) );
         }
+        else if(IRQNumber >= 128 && IRQNumber < 160 )  /* 128 to 159 */
+        {
+            /* Program ISER4 register */
+            *NVIC_ISER4 |= ( 1 << (IRQNumber % 128) );
+        }
+
     }else
     {
         if(IRQNumber <= 31) /* 0 to 31 */
         {
-            //program ICER0 register
+            /* Program ICER0 register */
             *NVIC_ICER0 |= ( 1 << IRQNumber );
         }else if(IRQNumber > 31 && IRQNumber < 64 ) /* 32 to 63 */
         {
-            //program ICER1 register
+            /* Program ICER1 register */
             *NVIC_ICER1 |= ( 1 << (IRQNumber % 32) );
-        }
-        else if(IRQNumber >= 64 && IRQNumber < 96 ) /* 64 to 95 */
+        }else if(IRQNumber >= 64 && IRQNumber < 96 ) /* 64 to 95 */
         {
-            //program ICER2 register
+            /* Program ICER2 register */
             *NVIC_ICER2 |= ( 1 << (IRQNumber % 64) );
+        }else if(IRQNumber >= 96 && IRQNumber < 128 )  /* 96 to 127 */
+        {
+            /* Program ICER3 register */
+            *NVIC_ICER3 |= ( 1 << (IRQNumber % 96) );
+        }
+        else if(IRQNumber >= 128 && IRQNumber < 160 )  /* 128 to 159 */
+        {
+            /* Program ICER4 register */
+            *NVIC_ICER4 |= ( 1 << (IRQNumber % 128) );
         }
     }
 }
