@@ -392,7 +392,7 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t EnorDi)
  */
 void GPIO_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
 {
-    //1. first lets find out the IPR register
+    /* 1. Find out the IPR register */
     uint8_t iprx = IRQNumber / 4;
     uint8_t iprx_section  = IRQNumber %4 ;
 
@@ -411,5 +411,10 @@ void GPIO_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
  */
 void GPIO_IRQHandling(uint8_t PinNumber)
 {
-
+    /* Clear the exti pr register corresponding to the pin number */
+    if(EXTI->CPUPR1 & ( 1 << PinNumber))
+    {
+        /* Clear pending register bit */
+        EXTI->CPUPR1 |= ( 1 << PinNumber);
+    }
 }

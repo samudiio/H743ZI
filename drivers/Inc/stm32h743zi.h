@@ -263,23 +263,23 @@ typedef struct
  */
 typedef struct
 {
-         uint32_t RESERVED0;             /* Reserved                                                  Address offset: 0x00 */
+          uint32_t RESERVED0;             /* Reserved                                                 Address offset: 0x00 */
      __vo uint32_t PMCR;                 /* SYSCFG peripheral mode configuration register             Address offset: 0x04 */
      __vo uint32_t EXTICR[4];            /* EXTICR[0]: SYSCFG ext interrupt configuration register 1  Address offset: 0x08 */
                                          /* EXTICR[1]: SYSCFG ext interrupt configuration register 2  Address offset: 0x0C */
                                          /* EXTICR[2]: SYSCFG ext interrupt configuration register 3  Address offset: 0x10 */
                                          /* EXTICR[3]: SYSCFG ext interrupt configuration register 4  Address offset: 0x14 */
      __vo uint32_t CFGR;                 /* SYSCFG configuration register                             Address offset: 0x18 */
-         uint32_t RESERVED1;             /* Reserved                                                  Address offset: 0x1C */
+          uint32_t RESERVED1;             /* Reserved                                                 Address offset: 0x1C */
      __vo uint32_t CCSR;                 /* SYSCFG compensation cell control/status register          Address offset: 0x20 */
      __vo uint32_t CCVR;                 /* SYSCFG compensation cell value register                   Address offset: 0x24 */
      __vo uint32_t CCCR;                 /* SYSCFG compensation cell code register                    Address offset: 0x28 */
      __vo uint32_t PWRCR;                /* SYSCFG power control register                             Address offset: 0x2C */
-         uint32_t RESERVED2[61];         /* Reserved, 0x30-0x120                                      Address offset: 0x30 */
+          uint32_t RESERVED2[61];         /* Reserved, 0x30-0x120                                     Address offset: 0x30 */
      __vo uint32_t PKGR;                 /* SYSCFG SYSCFG package register                            Address offset: 0x124 */
-         uint32_t RESERVED3[118];        /* Reserved, 0x128-0x2FC                                     Address offset: 0x128 */
+          uint32_t RESERVED3[118];        /* Reserved, 0x128-0x2FC                                    Address offset: 0x128 */
      __vo uint32_t UR0;                  /* SYSCFG user register 0                                    Address offset: 0x300 */
-         uint32_t RESERVED4;             /* Reserved                                                  Address offset: 0x304 */
+          uint32_t RESERVED4;             /* Reserved                                                 Address offset: 0x304 */
      __vo uint32_t UR2;                  /* SYSCFG user register 2                                    Address offset: 0x308 */
      __vo uint32_t UR3;                  /* SYSCFG user register 3                                    Address offset: 0x30C */
      __vo uint32_t UR4;                  /* SYSCFG user register 4                                    Address offset: 0x310 */
@@ -303,35 +303,38 @@ typedef struct
  */
 typedef struct
 {
-    __vo uint32_t RTSR1;                 /* EXTI rising trigger selection register                   Address offset: 0x00 */
-    __vo uint32_t FTSR1;                 /* EXTI falling trigger selection register                  Address offset: 0x04 */
-    __vo uint32_t SWIER1;                /* EXTI software interrupt event register                   Address offset: 0x08 */
-    __vo uint32_t D3PMR1;                /* EXTI D3 pending mask register                            Address offset: 0x0C */
-    __vo uint32_t D3PCR1L;               /* EXTI D3 pending clear selection register low             Address offset: 0x10 */
-    __vo uint32_t D3PCR1H;               /* EXTI D3 pending clear selection register high            Address offset: 0x14 */
-    __vo uint32_t RTSR2;                 /* EXTI rising trigger selection register                   Address offset: 0x20 */
-    __vo uint32_t FTSR2;                 /* EXTI falling trigger selection register                  Address offset: 0x24 */
-    __vo uint32_t SWIER2;                /* EXTI software interrupt event register                   Address offset: 0x28 */
-    __vo uint32_t D3PMR2;                /* EXTI D3 pending mask register                            Address offset: 0x2C */
-    __vo uint32_t D3PCR2L;               /* EXTI D3 pending clear selection register low             Address offset: 0x30 */
-    __vo uint32_t D3PCR2H;               /* EXTI D3 pending clear selection register high            Address offset: 0x34 */
-    __vo uint32_t RTSR3;                 /* EXTI rising trigger selection register                   Address offset: 0x40 */
-    __vo uint32_t FTSR3;                 /* EXTI falling trigger selection register                  Address offset: 0x44 */
-    __vo uint32_t SWIER3;                /* EXTI software interrupt event register                   Address offset: 0x48 */
-    __vo uint32_t D3PMR3;                /* EXTI D3 pending mask register                            Address offset: 0x4C */
-    __vo uint32_t D3PCR3L;               /* EXTI D3 pending clear selection register low             Address offset: 0x50 */
-    __vo uint32_t D3PCR3H;               /* EXTI D3 pending clear selection register high            Address offset: 0x54 */
-        uint32_t RESERVED0[10];          /* Reserved, 0x58-0x7C                                      Address offset: 0x58 */
-    __vo uint32_t CPUIMR1;               /* EXTI interrupt mask register                             Address offset: 0x80 */
-    __vo uint32_t CPUEMR1;               /* EXTI event mask register                                 Address offset: 0x84 */
-    __vo uint32_t CPUPR1;                /* EXTI pending register                                    Address offset: 0x88 */
-    __vo uint32_t CPUIMR2;               /* EXTI interrupt mask register                             Address offset: 0x90 */
-    __vo uint32_t CPUEMR2;               /* EXTI event mask register                                 Address offset: 0x94 */
-    __vo uint32_t CPUPR2;                /* EXTI pending register                                    Address offset: 0x98 */
-    __vo uint32_t CPUIMR3;               /* EXTI interrupt mask register                             Address offset: 0xA0 */
-    __vo uint32_t CPUEMR3;               /* EXTI event mask register                                 Address offset: 0xA4 */
-    __vo uint32_t CPUPR3;                /* EXTI pending register                                    Address offset: 0xA8 */
-        uint32_t RESERVED1[5];           /* Reserved, 0xAC-0xBC                                      Address offset: 0xAC */
+    __vo uint32_t RTSR1;                 /* EXTI rising trigger selection register                    Address offset: 0x00 */
+    __vo uint32_t FTSR1;                 /* EXTI falling trigger selection register                   Address offset: 0x04 */
+    __vo uint32_t SWIER1;                /* EXTI software interrupt event register                    Address offset: 0x08 */
+    __vo uint32_t D3PMR1;                /* EXTI D3 pending mask register                             Address offset: 0x0C */
+    __vo uint32_t D3PCR1L;               /* EXTI D3 pending clear selection register low              Address offset: 0x10 */
+    __vo uint32_t D3PCR1H;               /* EXTI D3 pending clear selection register high             Address offset: 0x14 */
+    __vo uint32_t RTSR2;                 /* EXTI rising trigger selection register                    Address offset: 0x20 */
+    __vo uint32_t FTSR2;                 /* EXTI falling trigger selection register                   Address offset: 0x24 */
+    __vo uint32_t SWIER2;                /* EXTI software interrupt event register                    Address offset: 0x28 */
+    __vo uint32_t D3PMR2;                /* EXTI D3 pending mask register                             Address offset: 0x2C */
+    __vo uint32_t D3PCR2L;               /* EXTI D3 pending clear selection register low              Address offset: 0x30 */
+    __vo uint32_t D3PCR2H;               /* EXTI D3 pending clear selection register high             Address offset: 0x34 */
+         uint32_t RESERVED0[2];          /* Reserved, 0x38-0x3C                                       Address offset: 0x38 */
+    __vo uint32_t RTSR3;                 /* EXTI rising trigger selection register                    Address offset: 0x40 */
+    __vo uint32_t FTSR3;                 /* EXTI falling trigger selection register                   Address offset: 0x44 */
+    __vo uint32_t SWIER3;                /* EXTI software interrupt event register                    Address offset: 0x48 */
+    __vo uint32_t D3PMR3;                /* EXTI D3 pending mask register                             Address offset: 0x4C */
+    __vo uint32_t D3PCR3L;               /* EXTI D3 pending clear selection register low              Address offset: 0x50 */
+    __vo uint32_t D3PCR3H;               /* EXTI D3 pending clear selection register high             Address offset: 0x54 */
+         uint32_t RESERVED1[10];         /* Reserved, 0x58-0x7C                                       Address offset: 0x58 */
+    __vo uint32_t CPUIMR1;               /* EXTI interrupt mask register                              Address offset: 0x80 */
+    __vo uint32_t CPUEMR1;               /* EXTI event mask register                                  Address offset: 0x84 */
+         uint32_t RESERVED2;             /* Reserved                                                  Address offset: 0x88 */
+    __vo uint32_t CPUPR1;                /* EXTI pending register                                     Address offset: 0x88 */
+    __vo uint32_t CPUIMR2;               /* EXTI interrupt mask register                              Address offset: 0x90 */
+    __vo uint32_t CPUEMR2;               /* EXTI event mask register                                  Address offset: 0x94 */
+    __vo uint32_t CPUPR2;                /* EXTI pending register                                     Address offset: 0x98 */
+         uint32_t RESERVED3;             /* Reserved                                                  Address offset: 0x9C */
+    __vo uint32_t CPUIMR3;               /* EXTI interrupt mask register                              Address offset: 0xA0 */
+    __vo uint32_t CPUEMR3;               /* EXTI event mask register                                  Address offset: 0xA4 */
+    __vo uint32_t CPUPR3;                /* EXTI pending register                                     Address offset: 0xA8 */
+         uint32_t RESERVED4[5];          /* Reserved, 0xAC-0xBC                                       Address offset: 0xAC */
 }EXTI_RegDef_t;
 
 /**********************************************
