@@ -8,6 +8,9 @@
 
 #include "stm32h743zi_gpio_driver.h"
 
+#define MODERX_MAX_BIT_FIELDS   2
+#define MODERX_MAX_CFG_VALUE    0x03
+#define GPIO_MODE_INPUT         0x00
 
 /*********************************************************************
  * @fn                - GPIO_PeriClockControl
@@ -119,15 +122,25 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
     {
         /* --- Non interrupt mode ---*/
 
-        temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
-        pGPIOHandle->pGPIOx->MODER &= ~( 0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); /* clearing */
-        pGPIOHandle->pGPIOx->MODER |= temp; /* setting */
+        /* Configure IO Direction mode (Input, Output, Alternate or Analog) */
+        /*GPIO_PinMode (defined by the user) will be left shifted to the proper MODERx where x is the pin number*/
+        /*Note: Each pin takes 2 bit fields, that is why multiplied by 2*/
+        temp = pGPIOHandle->pGPIOx->MODER;
+        temp &= ~( MODERX_MAX_CFG_VALUE << (MODERX_MAX_BIT_FIELDS * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); /* clearing */
+        temp |= (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (MODERX_MAX_BIT_FIELDS * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
+        pGPIOHandle->pGPIOx->MODER = temp; /* setting */
     }
     else
     {
         /* --- Interrupt mode ---*/
 
-        /* is pin mode configured as falling edge? */
+        /* Configure IO Direction mode as input */
+        temp = pGPIOHandle->pGPIOx->MODER;
+        temp &= ~( MODERX_MAX_CFG_VALUE << (MODERX_MAX_BIT_FIELDS * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); /* clearing */
+        temp |= ((pGPIOHandle->GPIO_PinConfig.GPIO_PinMode & GPIO_MODE_INPUT) << (MODERX_MAX_BIT_FIELDS * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+        pGPIOHandle->pGPIOx->MODER = temp; /* setting */
+
+        /* Is pin mode configured as falling edge? */
         if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode ==GPIO_MODE_IT_FT )
         {
             /* I1. Configure the FTSR1 */
@@ -138,7 +151,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 
         }else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode ==GPIO_MODE_IT_RT )
         {
-            /* pin mode configured as rising edge */
+            /* Pin mode configured as rising edge */
 
             /* I1. Configure the RTSR1 */
             EXTI->RTSR1 |= (1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
@@ -148,7 +161,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 
         }else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RFT )
         {
-            /* pin mode configured as rising edge/falling edge */
+            /* Pin mode configured as rising edge/falling edge */
 
             /* I1. Configure both FTSR and RTSR */
             EXTI->FTSR1 |= (1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
@@ -399,7 +412,7 @@ void GPIO_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
     uint8_t shift_amount = ( 8 * iprx_section) + ( 8 - NVIC_PRIO_BITS_IMPLEMENTED) ;
 
     /* Jump by 4; 32bits register*/
-    *(  NVIC_IPR_BASEADDR + (iprx * 4) ) |=  ( IRQPriority << shift_amount );
+    *( NVIC_IPR_BASEADDR + iprx ) |= ( IRQPriority << shift_amount );
 }
 
 /*********************************************************************

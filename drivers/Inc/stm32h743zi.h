@@ -309,23 +309,23 @@ typedef struct
     __vo uint32_t D3PMR1;                /* EXTI D3 pending mask register                             Address offset: 0x0C */
     __vo uint32_t D3PCR1L;               /* EXTI D3 pending clear selection register low              Address offset: 0x10 */
     __vo uint32_t D3PCR1H;               /* EXTI D3 pending clear selection register high             Address offset: 0x14 */
+         uint32_t RESERVED0[2];          /* Reserved, 0x18-0x1C                                       Address offset: 0x18 */
     __vo uint32_t RTSR2;                 /* EXTI rising trigger selection register                    Address offset: 0x20 */
     __vo uint32_t FTSR2;                 /* EXTI falling trigger selection register                   Address offset: 0x24 */
     __vo uint32_t SWIER2;                /* EXTI software interrupt event register                    Address offset: 0x28 */
     __vo uint32_t D3PMR2;                /* EXTI D3 pending mask register                             Address offset: 0x2C */
     __vo uint32_t D3PCR2L;               /* EXTI D3 pending clear selection register low              Address offset: 0x30 */
     __vo uint32_t D3PCR2H;               /* EXTI D3 pending clear selection register high             Address offset: 0x34 */
-         uint32_t RESERVED0[2];          /* Reserved, 0x38-0x3C                                       Address offset: 0x38 */
+         uint32_t RESERVED1[2];          /* Reserved, 0x38-0x3C                                       Address offset: 0x38 */
     __vo uint32_t RTSR3;                 /* EXTI rising trigger selection register                    Address offset: 0x40 */
     __vo uint32_t FTSR3;                 /* EXTI falling trigger selection register                   Address offset: 0x44 */
     __vo uint32_t SWIER3;                /* EXTI software interrupt event register                    Address offset: 0x48 */
     __vo uint32_t D3PMR3;                /* EXTI D3 pending mask register                             Address offset: 0x4C */
     __vo uint32_t D3PCR3L;               /* EXTI D3 pending clear selection register low              Address offset: 0x50 */
     __vo uint32_t D3PCR3H;               /* EXTI D3 pending clear selection register high             Address offset: 0x54 */
-         uint32_t RESERVED1[10];         /* Reserved, 0x58-0x7C                                       Address offset: 0x58 */
+         uint32_t RESERVED2[10];         /* Reserved, 0x58-0x7C                                       Address offset: 0x58 */
     __vo uint32_t CPUIMR1;               /* EXTI interrupt mask register                              Address offset: 0x80 */
     __vo uint32_t CPUEMR1;               /* EXTI event mask register                                  Address offset: 0x84 */
-         uint32_t RESERVED2;             /* Reserved                                                  Address offset: 0x88 */
     __vo uint32_t CPUPR1;                /* EXTI pending register                                     Address offset: 0x88 */
     __vo uint32_t CPUIMR2;               /* EXTI interrupt mask register                              Address offset: 0x90 */
     __vo uint32_t CPUEMR2;               /* EXTI event mask register                                  Address offset: 0x94 */
@@ -335,6 +335,7 @@ typedef struct
     __vo uint32_t CPUEMR3;               /* EXTI event mask register                                  Address offset: 0xA4 */
     __vo uint32_t CPUPR3;                /* EXTI pending register                                     Address offset: 0xA8 */
          uint32_t RESERVED4[5];          /* Reserved, 0xAC-0xBC                                       Address offset: 0xAC */
+
 }EXTI_RegDef_t;
 
 /**********************************************
@@ -489,24 +490,45 @@ typedef struct
  * TODO: Complete this list for other peripherals
  ***********************************************/
 
-#define IRQ_NO_EXTI0        6
-#define IRQ_NO_EXTI1        7
-#define IRQ_NO_EXTI2        8
-#define IRQ_NO_EXTI3        9
-#define IRQ_NO_EXTI4        10
-#define IRQ_NO_EXTI9_5      23
-#define IRQ_NO_EXTI15_10    40
+#define IRQ_NO_EXTI0                        6
+#define IRQ_NO_EXTI1                        7
+#define IRQ_NO_EXTI2                        8
+#define IRQ_NO_EXTI3                        9
+#define IRQ_NO_EXTI4                        10
+#define IRQ_NO_EXTI9_5                      23
+#define IRQ_NO_EXTI15_10                    40
+
+/**********************************************
+ * Macros for all the possible priority levels
+ ***********************************************/
+
+#define NVIC_IRQ_PRIO0                      0
+#define NVIC_IRQ_PRIO1                      1
+#define NVIC_IRQ_PRIO2                      2
+#define NVIC_IRQ_PRIO3                      3
+#define NVIC_IRQ_PRIO4                      4
+#define NVIC_IRQ_PRIO5                      5
+#define NVIC_IRQ_PRIO6                      6
+#define NVIC_IRQ_PRIO7                      7
+#define NVIC_IRQ_PRIO8                      8
+#define NVIC_IRQ_PRIO9                      9
+#define NVIC_IRQ_PRIO10                     10
+#define NVIC_IRQ_PRIO11                     11
+#define NVIC_IRQ_PRIO12                     12
+#define NVIC_IRQ_PRIO13                     13
+#define NVIC_IRQ_PRIO14                     14
+#define NVIC_IRQ_PRIO15                     15
 
 /**********************************************
  * Generic Macros
  ***********************************************/
 
-#define ENABLE                  1
-#define DISABLE                 0
-#define SET                     ENABLE
-#define RESET                   DISABLE
-#define GPIO_PIN_SET            SET
-#define GPIO_PIN_RESET          RESET
+#define ENABLE                              1
+#define DISABLE                             0
+#define SET                                 ENABLE
+#define RESET                               DISABLE
+#define GPIO_PIN_SET                        SET
+#define GPIO_PIN_RESET                      RESET
 
 /**********************************************
  * Include headers
