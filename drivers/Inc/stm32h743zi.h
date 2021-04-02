@@ -134,6 +134,8 @@
  ***********************************************/
 
 #define SPI1_BASEADDR           (APB2PERIPH_BASE + 0x3000)
+#define SPI4_BASEADDR           (APB2PERIPH_BASE + 0x3400)
+#define SPI5_BASEADDR           (APB2PERIPH_BASE + 0x5000)
 #define USART1_BASEADDR         (APB2PERIPH_BASE + 0x1000)
 #define USART6_BASEADDR         (APB2PERIPH_BASE + 0x1400)
 
@@ -144,6 +146,7 @@
 
 #define EXTI_BASEADDR           (APB4PERIPH_BASE + 0x0000)
 #define SYSCFG_BASEADDR         (APB4PERIPH_BASE + 0x0400)
+#define SPI6_BASEADDR           (APB4PERIPH_BASE + 0x1400)
 
 /**********************************************
  * Peripheral register definition structures
@@ -165,6 +168,30 @@ typedef struct
      __vo uint32_t AFR[2];               /* AFR[0]: GPIO alternate function low register,            Address offset: 0x20 */
                                          /* AFR[1]: GPIO alternate function high register,           Address offset: 0x24 */
 }GPIO_RegDef_t;
+
+/*
+ * Peripheral register definition structure for SPI
+ */
+typedef struct
+{
+     __vo uint32_t SPI2S_CR1;            /* SPI/I2S control register 1,                              Address offset: 0x00 */
+     __vo uint32_t SPI_CR2;              /* SPI control register 2,                                  Address offset: 0x04 */
+     __vo uint32_t SPI_CFG1;             /* SPI configuration register 1,                            Address offset: 0x08 */
+     __vo uint32_t SPI_CFG2;             /* SPI configuration register 2,                            Address offset: 0x0C */
+     __vo uint32_t SPI2S_IER;            /* SPI/I2S interrupt enable register,                       Address offset: 0x10 */
+     __vo uint32_t SPI2S_SR;             /* SPI/I2S status register,                                 Address offset: 0x14 */
+     __vo uint32_t SPI2S_IFCR;           /* SPI/I2S interrupt/status flags clear register,           Address offset: 0x18 */
+          uint32_t RESERVED0;            /* Reserved                                                 Address offset: 0x1C */
+     __vo uint32_t SPI2S_TXDR;           /* SPI/I2S transmit data register,                          Address offset: 0x20 */
+          uint32_t RESERVED1[3];         /* Reserved, 0x24-0x2C                                      Address offset: 0x24 */
+     __vo uint32_t SPI2S_RXDR;           /* SPI/I2S receive data register,                           Address offset: 0x30 */
+          uint32_t RESERVED2[3];         /* Reserved, 0x34-0x3C                                      Address offset: 0x34 */
+     __vo uint32_t SPI_CRCPOLY;          /* SPI polynomial register,                                 Address offset: 0x40 */
+     __vo uint32_t SPI_TXCRC;            /* SPI transmitter CRC register,                            Address offset: 0x44 */
+     __vo uint32_t SPI_RXCRC;            /* SPI receiver CRC register,                               Address offset: 0x48 */
+     __vo uint32_t SPI_UDRDR;            /* SPI underrun data register,                              Address offset: 0x4C */
+     __vo uint32_t SPI_I2SCFGR;          /* SPI/I2S configuration register,                          Address offset: 0x50 */
+}SPI_RegDef_t;
 
 /*
  * Peripheral register definition structure for RCC. (Rev Y)
@@ -214,7 +241,7 @@ typedef struct
     __vo uint32_t GCR;                   /* RCC Global Control Register                              Address offset: 0xA0 */
         uint32_t RESERVED7;              /* Reserved                                                 Address offset: 0xA4 */
     __vo uint32_t D3AMR;                 /* RCC D3 Autonomous mode Register                          Address offset: 0xA8 */
-    __vo uint32_t RESERVED8[9];          /* Reserved, 0xAC-0xCC                                      Address offset: 0xAC */
+        uint32_t RESERVED8[9];           /* Reserved, 0xAC-0xCC                                      Address offset: 0xAC */
     __vo uint32_t RSR;                   /* RCC Reset Status Register                                Address offset: 0xD0 */
     __vo uint32_t AHB3ENR;               /* RCC AHB3 Clock Register                                  Address offset: 0xD4 */
     __vo uint32_t AHB1ENR;               /* RCC AHB1 Clock Register                                  Address offset: 0xD8 */
@@ -360,6 +387,13 @@ typedef struct
 
 #define EXTI                            ((EXTI_RegDef_t*) EXTI_BASEADDR)
 
+#define SPI1                            ((SPI_RegDef_t*) SPI1_BASEADDR)
+#define SPI2                            ((SPI_RegDef_t*) SPI2_BASEADDR)
+#define SPI3                            ((SPI_RegDef_t*) SPI3_BASEADDR)
+#define SPI4                            ((SPI_RegDef_t*) SPI4_BASEADDR)
+#define SPI5                            ((SPI_RegDef_t*) SPI5_BASEADDR)
+#define SPI6                            ((SPI_RegDef_t*) SPI6_BASEADDR)
+
 /**********************************************
  * Clock Enable Macros for GPIOx peripherals
  ***********************************************/
@@ -388,8 +422,12 @@ typedef struct
  * Clock Enable Macros for SPIx peripherals
  ***********************************************/
 
+#define SPI1_PCLK_EN()                  ( RCC->APB2ENR  |= (1 << 12) )              /* 1: SPI1 peripheral clocks enabled */
 #define SPI2_PCLK_EN()                  ( RCC->APB1LENR |= (1 << 14) )              /* 1: SPI2 peripheral clocks enabled */
 #define SPI3_PCLK_EN()                  ( RCC->APB1LENR |= (1 << 15) )              /* 1: SPI3 peripheral clocks enabled */
+#define SPI4_PCLK_EN()                  ( RCC->APB2ENR  |= (1 << 13) )              /* 1: SPI4 peripheral clocks enabled */
+#define SPI5_PCLK_EN()                  ( RCC->APB2ENR  |= (1 << 20) )              /* 1: SPI5 peripheral clocks enabled */
+#define SPI6_PCLK_EN()                  ( RCC->APB4ENR  |= (1 << 05) )              /* 1: SPI6 peripheral clocks enabled */
 
 /**********************************************
  * Clock Enable Macros for USARTx peripherals
@@ -434,8 +472,12 @@ typedef struct
  * Clock Disable Macros for SPIx peripherals
  ***********************************************/
 
+#define SPI1_PCLK_DI()                  ( RCC->APB2ENR  &= ~(1 << 12) )             /* 0: SPI1 peripheral clocks enabled */
 #define SPI2_PCLK_DI()                  ( RCC->APB1LENR &= ~(1 << 14) )             /* 0: SPI2 peripheral clocks disabled */
 #define SPI3_PCLK_DI()                  ( RCC->APB1LENR &= ~(1 << 15) )             /* 0: SPI3 peripheral clocks disabled */
+#define SPI4_PCLK_DI()                  ( RCC->APB2ENR  &= ~(1 << 13) )             /* 0: SPI4 peripheral clocks enabled */
+#define SPI5_PCLK_DI()                  ( RCC->APB2ENR  &= ~(1 << 20) )             /* 0: SPI5 peripheral clocks enabled */
+#define SPI6_PCLK_DI()                  ( RCC->APB4ENR  &= ~(1 << 05) )             /* 0: SPI6 peripheral clocks enabled */
 
 /**********************************************
  * Clock Disable Macros for USARTx peripherals
