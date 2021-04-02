@@ -576,5 +576,6 @@ typedef struct
  * Include headers
  ***********************************************/
 #include "stm32h743zi_gpio_driver.h"
+#include "stm32h743zi_spi_driver.h"
 
 #endif /* INC_STM32H743ZI_H_ */
