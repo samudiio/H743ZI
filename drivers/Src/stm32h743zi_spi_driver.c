@@ -72,7 +72,46 @@ void SPI_PeriClockControl(SPI_RegDef_t *pSPIx, uint8_t EnorDi)
  */
 void SPI_Init(SPI_Handle_t *pSPIHandle)
 {
+    uint32_t spi_cfg1 = 0x00070007;     /* SPI configuration register 1 */
+    uint32_t spi_cfg2 = 0x00;           /* SPI configuration register 2 */
 
+    /* Peripheral clock enable */
+    SPI_PeriClockControl(pSPIHandle->pSPIx, ENABLE);
+
+    /**** Configure the SPI_CFG1 register ****/
+
+    /* Configure the number of bits in at single SPI data frame */
+    spi_cfg1 |= pSPIHandle->SPIConfig.SPI_DSize << SPI_CFG1_DSIZE_B0;
+
+    // Configure the spi serial clock speed (baud rate)
+    spi_cfg1 |= pSPIHandle->SPIConfig.SPI_SclkSpeed << SPI_CFG1_MBR_B0;
+
+    pSPIHandle->pSPIx->SPI_CFG1 = spi_cfg1;
+
+    /**** Configure the SPI_CFG2 register ****/
+
+    /* Configure the device mode */
+    spi_cfg2 |= pSPIHandle->SPIConfig.SPI_DeviceMode << SPI_CFG2_MASTER;
+
+    /* Configure the serial protocol */
+    spi_cfg2 |= pSPIHandle->SPIConfig.SPI_SerProtocol << SPI_CFG2_SP_B0;
+
+    /* Configure the communication mode */
+    spi_cfg2 |= pSPIHandle->SPIConfig.SPI_ComMode << SPI_CFG2_COMM_B0;
+
+    /* Configure the DFF */
+    spi_cfg2 |= pSPIHandle->SPIConfig.SPI_DFF << SPI_CFG2_LSBFRST;
+
+    /* Configure the CPHA */
+    spi_cfg2 |= pSPIHandle->SPIConfig.SPI_CPHA << SPI_CFG2_CPHA;
+
+    /* Configure the CPOL */
+    spi_cfg2 |= pSPIHandle->SPIConfig.SPI_CPOL << SPI_CFG2_CPOL;
+
+    /* Configure the SSM */
+    spi_cfg2 |= pSPIHandle->SPIConfig.SPI_SSM << SPI_CFG2_SSM;
+
+    pSPIHandle->pSPIx->SPI_CFG2 = spi_cfg2;
 }
 
 
@@ -85,7 +124,7 @@ void SPI_Init(SPI_Handle_t *pSPIHandle)
  */
 void SPI_DeInit(SPI_RegDef_t *pSPIx)
 {
-
+    /* TODO */
 }
 
 /*********************************************************************

@@ -572,6 +572,89 @@ typedef struct
 #define GPIO_PIN_SET                        SET
 #define GPIO_PIN_RESET                      RESET
 
+/******************************************************************************************
+ *Bit position definitions of SPI peripheral
+ ******************************************************************************************/
+/*
+ * Bit position definitions SPI_CFG1
+ */
+typedef enum _SPI_CFG1_Bits_ten
+{
+    SPI_CFG1_DSIZE_B0       = 0u,               /* Number of bits in at single SPI data frame byte 0 */
+    SPI_CFG1_DSIZE_B1       = 1u,               /* Number of bits in at single SPI data frame byte 1 */
+    SPI_CFG1_DSIZE_B2       = 2u,               /* Number of bits in at single SPI data frame byte 2 */
+    SPI_CFG1_DSIZE_B3       = 3u,               /* Number of bits in at single SPI data frame byte 3 */
+    SPI_CFG1_DSIZE_B4       = 4u,               /* Number of bits in at single SPI data frame byte 4 */
+    SPI_CFG1_FTHLV_B0       = 5u,               /* FIFO threshold level byte 0 */
+    SPI_CFG1_FTHLV_B1       = 6u,               /* FIFO threshold level byte 1 */
+    SPI_CFG1_FTHLV_B2       = 7u,               /* FIFO threshold level byte 2 */
+    SPI_CFG1_FTHLV_B3       = 8u,               /* FIFO threshold level byte 3 */
+    SPI_CFG1_UDRCFG         = 9u,               /* Behavior of slave transmitter at underrun condition */
+    SPI_CFG1_UDRCFG1        = 10u,
+    SPI_CFG1_UDRDET_B0      = 11u,              /* Detection of underrun condition at slave transmitter byte 0 */
+    SPI_CFG1_UDRDET_B1      = 12u,              /* Detection of underrun condition at slave transmitter byte 1 */
+    // Reserved             = 13u,
+    SPI_CFG1_RXDMAEN        = 14u,              /* Rx DMA stream enable */
+    SPI_CFG1_TXDMAEN        = 15u,              /* Tx DMA stream enable */
+    SPI_CFG1_CRCSIZE_B0     = 16u,              /* Length of CRC frame to be transacted and compared byte 0 */
+    SPI_CFG1_CRCSIZE_B1     = 17u,              /* Length of CRC frame to be transacted and compared byte 1 */
+    SPI_CFG1_CRCSIZE_B2     = 18u,              /* Length of CRC frame to be transacted and compared byte 2 */
+    SPI_CFG1_CRCSIZE_B3     = 19u,              /* Length of CRC frame to be transacted and compared byte 3 */
+    SPI_CFG1_CRCSIZE_B4     = 20u,              /* Length of CRC frame to be transacted and compared byte 4 */
+    // Reserved             = 21u,
+    SPI_CFG1_CRCEN          = 22u,              /* Hardware CRC computation enable */
+    // Reserved             = 22u,
+    // Reserved             = 23u,
+    // Reserved             = 24u,
+    // Reserved             = 25u,
+    // Reserved             = 26u,
+    // Reserved             = 27u,
+    SPI_CFG1_MBR_B0         = 28u,              /* Master baud rate byte 0 */
+    SPI_CFG1_MBR_B1         = 29u,              /* Master baud rate byte 1 */
+    SPI_CFG1_MBR_B2         = 30u,              /* Master baud rate byte 2 */
+    // Reserved             = 31u
+}SPI_CFG1_Bits_t;
+
+/*
+ * Bit position definitions SPI_CFG2
+ */
+typedef enum _SPI_CFG2_Bits_ten
+{
+    SPI_CFG2_MSSI_B0    = 0u,                   /* Master SS idleness byte 0 */
+    SPI_CFG2_MSSI_B1    = 1u,                   /* Master SS idleness byte 1 */
+    SPI_CFG2_MSSI_B2    = 2u,                   /* Master SS idleness byte 1 */
+    SPI_CFG2_MSSI_B3    = 3u,                   /* Master SS idleness byte 1 */
+    SPI_CFG2_MIDI_B0    = 4u,                   /* Master Inter-Data Idleness byte 0 */
+    SPI_CFG2_MIDI_B1    = 5u,                   /* Master Inter-Data Idleness byte 1 */
+    SPI_CFG2_MIDI_B2    = 6u,                   /* Master Inter-Data Idleness byte 2 */
+    SPI_CFG2_MIDI_B3    = 7u,                   /* Master Inter-Data Idleness byte 3 */
+    // Reserved         = 8u,
+    // Reserved         = 9u,
+    // Reserved         = 10u,
+    // Reserved         = 11u,
+    // Reserved         = 12u,
+    // Reserved         = 13u,
+    // Reserved         = 14u,
+    SPI_CFG2_IOSWP      = 15u,                  /* Swap functionality of MISO and MOSI pins */
+    // Reserved         = 16u,
+    SPI_CFG2_COMM_B0    = 17u,                  /* SPI communication mode byte 0 */
+    SPI_CFG2_COMM_B1    = 18u,                  /* SPI communication mode byte 1 */
+    SPI_CFG2_SP_B0      = 19u,                  /* Serial protocol byte 0 */
+    SPI_CFG2_SP_B1      = 20u,                  /* Serial protocol byte 1 */
+    SPI_CFG2_SP_B2      = 21u,                  /* Serial protocol byte 2 */
+    SPI_CFG2_MASTER     = 22u,                  /* SPI master */
+    SPI_CFG2_LSBFRST    = 23u,                  /* Data frame format */
+    SPI_CFG2_CPHA       = 24u,                  /* Clock phase */
+    SPI_CFG2_CPOL       = 25u,                  /* Clock polarity */
+    SPI_CFG2_SSM        = 26u,                  /* Software management of SS signal input */
+    // Reserved         = 27u,
+    SPI_CFG2_SSIOP      = 28u,                  /* SS input/output polarity */
+    SPI_CFG2_SSOE       = 29u,                  /* SS output enable */
+    SPI_CFG2_SSOM       = 30u,                  /* SS output management in master mode */
+    SPI_CFG2_AFCNTR     = 31u                   /* Alternate function GPIOs control */
+}SPI_CFG2_Bits_t;
+
+
 /**********************************************
  * Include headers
  ***********************************************/
